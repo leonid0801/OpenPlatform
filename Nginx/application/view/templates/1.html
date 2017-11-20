@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html class=" js " style="background-repeat: repeat;">
+
+<head>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>图片上传</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="robots" content="noindex">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="renderer" content="webkit">
+		
+		<style type="text/css">
+		html{background-color: #ffffff;color:#000000;background-position:left top;}
+		.fs_main{width:640PX}
+		.fs_cTitle{font-size:16PX;line-height:25PX;}
+		.fs_content{font-size:14px;}@media screen and (max-width:640PX){div.fs_main{width:100%;}}div.f_share{left:640PX} div.f_share_main{width:640PX}@media screen and (max-width:862px){div.f_share{display:none;}}div.f_share{background-color:rgba(153, 153, 153, 0.4);}
+		.fs_cValidate{color:#000000;}
+		.fs_cDescribe a, .fs_cDescribe a:visited{color:#7c7c7c}.fs_cDescribe, .fs_cLink, .fs_cLink:visited{color:#7c7c7c}
+		.fs_cExtraDescribe{color:#7c7c7c}
+		.fs_sectionDescribe, .fs_imgDescribe{color:#7c7c7c}
+		.fs_component{background-color: #FFF8DC;color:#000000}
+		.fs_header{background-color: #ffffff;color:#000000;}
+		.fs_main{background-color: #ffffff;color:#000000;}
+		.f_copyright 
+		.fs_powerby{color:#333;}
+
+		
+    *{margin: 0;padding: 0;}
+    li{list-style-type: none;}
+    a,input{outline: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+    #choose{display: none;}
+    canvas{width: 100%;border: 1px solid #000000;}
+    #upload{display: block;margin: 10px;height: 60px;text-align: center;line-height: 60px;border: 1px solid;border-radius: 5px;cursor: pointer;}
+    .touch{background-color: #ddd;}
+    .img-list{margin: 10px 5px;}
+    .img-list li{position: relative;display: inline-block;width: 100px;height: 100px;margin: 5px 5px 20px 5px;border: 1px solid rgb(100,149,198);background: #fff no-repeat center;background-size: cover;}
+    .progress{position: absolute;width: 100%;height: 20px;line-height: 20px;bottom: 0;left: 0;background-color:rgba(100,149,198,.5);}
+    .progress span{display: block;width: 0;height: 100%;background-color:rgb(100,149,198);text-align: center;color: #FFF;font-size: 13px;}
+    .size{position: absolute;width: 100%;height: 15px;line-height: 15px;bottom: -18px;text-align: center;font-size: 13px;color: #666;}
+    .tips{display: block;text-align:center;font-size: 13px;margin: 10px;color: #999;}
+    .pic-list{margin: 10px;line-height: 18px;font-size: 13px;}
+    .pic-list a{display: block;margin: 10px 0;}
+    .pic-list a img{vertical-align: middle;max-width: 30px;max-height: 30px;margin: -4px 0 0 10px;}
+	
+	
+	.div-b{ text-align:center;height=20px;width=100px;}
+	.div-c{ display: block;margin: 10px;height: 60px;text-align: center;line-height: 60px;border: 1px solid;border-radius: 5px;cursor: pointer; }
+
+	
+	.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 16px/100% 'Microsoft yahei',Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);}
+	
+	
+	/* blue */
+	.blue {
+	color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+	}
+	
+	.blue:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.blue:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
+	
+	.demo{text-align:center; width:760px; margin:20px auto 0 auto; height:70px;}
+
+</style>
+
+    <link rel="stylesheet" href="/application/view/templates/css/form.mobile.css" media="screen" type="text/css" />
+
+</head>
+
+<body>
+
+<div class="f_wrapper fs_wrapper">
+        <div class="f_main fs_main">
+			<div class="f_body fs_body">
+				<!--<div class="f_component" com-name="id_singleLine" name="com2" serialnum="0"> 
+					<p class="f_cTitle fs_cTitle">真实姓名<span class="f_cValidate fs_cValidate">*</span></p>  
+					<p class="f_cDescribe fs_cDescribe">请与身份证件一致，示例：张天天</p>  
+					<input type="text" class="input medium fs_content fs_input" value=""> 
+				</div>-->
+				<div class="f_component" com-name="id_singleLine" name="com6" serialnum="1"> 
+				<p class="f_cTitle fs_cTitle">昵称<span class="f_cValidate fs_cValidate">*</span></p>  
+				<input type="text" class="input medium fs_content fs_input" id="nick_name" value="" > 
+				</div>
+				
+				
+				<!--<div class="f_component" com-name="id_radio" name="com3" serialnum="2"> 
+					<p class="f_cTitle fs_cTitle">性别<span class="f_cValidate fs_cValidate">*</span></p>  
+					<form action="" method="get"> 
+					<label><input name="Fruit" type="radio" value="" />男 </label> 
+					<label><input name="Fruit" type="radio" value="" />女 </label> 
+					</form> 
+				</div>-->
+			</div>
+			
+			
+			<input type="file" id="choose" accept="image/*" multiple>
+			<ul class="img-list"></ul>
+			<a id="upload">上传图片</a>
+			<span class="tips">只允许上传jpg、png及gif</span>
+			<div class="pic-list" id="pic_list">
+				<!--你上传的图片(图片有效期为1分钟)：-->
+			</div>
+			
+			<div class="div-b"><input class="button blue" type="button" name="GO" value="提交" id="GO" onClick="return getSubmitResponse();"/></div>
+
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script>
+  var filechooser = document.getElementById("choose");
+
+  //    用于压缩图片的canvas
+  var canvas = document.createElement("canvas");
+  var ctx = canvas.getContext('2d');
+
+  //    瓦片canvas
+  var tCanvas = document.createElement("canvas");
+  var tctx = tCanvas.getContext("2d");
+
+  var maxsize = 100 * 1024;
+
+  $("#upload").on("click", function() {
+        filechooser.click();
+      })
+      .on("touchstart", function() {
+        $(this).addClass("touch")
+      })
+      .on("touchend", function() {
+        $(this).removeClass("touch")
+      });
+
+  filechooser.onchange = function() {
+    if (!this.files.length) return;
+
+    var files = Array.prototype.slice.call(this.files);
+
+    if (files.length > 9) {
+      alert("最多同时只可上传9张图片");
+      return;
+    }
+
+    files.forEach(function(file, i) {
+      if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+
+      var reader = new FileReader();
+
+      var li = document.createElement("li");
+
+//          获取图片大小
+      var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+      li.innerHTML = '<div class="progress"><span></span></div><div class="size">' + size + '</div>';
+      $(".img-list").append($(li));
+
+      reader.onload = function() {
+        var result = this.result;
+        var img = new Image();
+        img.src = result;
+
+        $(li).css("background-image", "url(" + result + ")");
+
+        //如果图片大小小于100kb，则直接上传
+        if (result.length <= maxsize) {
+          img = null;
+
+          upload(result, file.type, $(li));
+
+          return;
+        }
+
+//      图片加载完毕之后进行压缩，然后上传
+        if (img.complete) {
+          callback();
+        } else {
+          img.onload = callback;
+        }
+
+        function callback() {
+          var data = compress(img);
+
+          upload(data, file.type, $(li));
+
+          img = null;
+        }
+
+      };
+
+      reader.readAsDataURL(file);
+    })
+  };
+
+  //    使用canvas对大图片进行压缩
+  function compress(img) {
+    var initSize = img.src.length;
+    var width = img.width;
+    var height = img.height;
+
+    //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
+    var ratio;
+    if ((ratio = width * height / 4000000) > 1) {
+      ratio = Math.sqrt(ratio);
+      width /= ratio;
+      height /= ratio;
+    } else {
+      ratio = 1;
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+
+//        铺底色
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    //如果图片像素大于100万则使用瓦片绘制
+    var count;
+    if ((count = width * height / 1000000) > 1) {
+      count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
+
+//            计算每块瓦片的宽和高
+      var nw = ~~(width / count);
+      var nh = ~~(height / count);
+
+      tCanvas.width = nw;
+      tCanvas.height = nh;
+
+      for (var i = 0; i < count; i++) {
+        for (var j = 0; j < count; j++) {
+          tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh);
+
+          ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
+        }
+      }
+    } else {
+      ctx.drawImage(img, 0, 0, width, height);
+    }
+
+    //进行最小压缩
+    var ndata = canvas.toDataURL('image/jpeg', 0.1);
+
+    console.log('压缩前：' + initSize);
+    console.log('压缩后：' + ndata.length);
+    console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + "%");
+
+    tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
+
+    return ndata;
+  }
+
+  //    图片上传，将base64的图片转成二进制对象，塞进formdata上传
+  function upload(basestr, type, $li) {
+    var text = window.atob(basestr.split(",")[1]);
+    var buffer = new Uint8Array(text.length);
+    var pecent = 0, loop = null;
+
+    for (var i = 0; i < text.length; i++) {
+      buffer[i] = text.charCodeAt(i);
+    }
+
+    var blob = getBlob([buffer], type);
+
+    var xhr = new XMLHttpRequest();
+
+    var formdata = getFormData();
+
+    formdata.append('imagefile', blob);
+
+    xhr.open('post', '/index.php/file/imageUpload/test');
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        ///alert(xhr.responseText);
+        var jsonData = JSON.parse(xhr.responseText);
+        var imagedata = jsonData[0] || {};
+        var text = imagedata.path ? '上传成功' : '上传失败';
+
+        console.log(text + '：' + imagedata.path);
+
+        clearInterval(loop);
+
+        //当收到该消息时上传完毕
+        $li.find(".progress span").animate({'width': "100%"}, pecent < 95 ? 200 : 0, function() {
+          $(this).html(text);
+        });
+
+        if (!imagedata.path) return;
+        $(".pic-list").append('<a href="' + imagedata.path + '">' + '<img src="' + imagedata.path + '" />\t'+ imagedata.name + '（' + imagedata.size + '）</a>');
+      }
+    };
+
+    //数据发送进度，前50%展示该进度
+    xhr.upload.addEventListener('progress', function(e) {
+      if (loop) return;
+
+      pecent = ~~(100 * e.loaded / e.total) / 2;
+      $li.find(".progress span").css('width', pecent + "%");
+
+      if (pecent == 50) {
+        mockProgress();
+      }
+    }, false);
+
+    //数据后50%用模拟进度
+    function mockProgress() {
+      if (loop) return;
+
+      loop = setInterval(function() {
+        pecent++;
+        $li.find(".progress span").css('width', pecent + "%");
+
+        if (pecent == 99) {
+          clearInterval(loop);
+        }
+      }, 100)
+    }
+
+    xhr.send(formdata);
+  }
+
+  /**
+   * 获取blob对象的兼容性写法
+   * @param buffer
+   * @param format
+   * @returns {*}
+   */
+  function getBlob(buffer, format) {
+    try {
+      return new Blob(buffer, {type: format});
+    } catch (e) {
+      var bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder);
+      buffer.forEach(function(buf) {
+        bb.append(buf);
+      });
+      return bb.getBlob(format);
+    }
+  }
+
+  /**
+   * 获取formdata
+   */
+  function getFormData() {
+    var isNeedShim = ~navigator.userAgent.indexOf('Android')
+        && ~navigator.vendor.indexOf('Google')
+        && !~navigator.userAgent.indexOf('Chrome')
+        && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
+
+    return isNeedShim ? new FormDataShim() : new FormData()
+  }
+
+  /**
+   * formdata 补丁, 给不支持formdata上传blob的android机打补丁
+   * @constructor
+   */
+  function FormDataShim() {
+    console.warn('using formdata shim');
+
+    var o = this,
+        parts = [],
+        boundary = Array(21).join('-') + (+new Date() * (1e16 * Math.random())).toString(36),
+        oldSend = XMLHttpRequest.prototype.send;
+
+    this.append = function(name, value, filename) {
+      parts.push('--' + boundary + '\r\nContent-Disposition: form-data; name="' + name + '"');
+
+      if (value instanceof Blob) {
+        parts.push('; filename="' + (filename || 'blob') + '"\r\nContent-Type: ' + value.type + '\r\n\r\n');
+        parts.push(value);
+      }
+      else {
+        parts.push('\r\n\r\n' + value);
+      }
+      parts.push('\r\n');
+    };
+
+    // Override XHR send()
+    XMLHttpRequest.prototype.send = function(val) {
+      var fr,
+          data,
+          oXHR = this;
+
+      if (val === o) {
+        // Append the final boundary string
+        parts.push('--' + boundary + '--\r\n');
+
+        // Create the blob
+        data = getBlob(parts);
+
+        // Set up and read the blob into an array to be sent
+        fr = new FileReader();
+        fr.onload = function() {
+          oldSend.call(oXHR, fr.result);
+        };
+        fr.onerror = function(err) {
+          throw err;
+        };
+        fr.readAsArrayBuffer(data);
+
+        // Set the multipart content type and boudary
+        this.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+        XMLHttpRequest.prototype.send = oldSend;
+      }
+      else {
+        oldSend.call(this, val);
+      }
+    };
+	
+	
+
+  }
+  
+  
+  
+	function GetQueryString(name)
+	{
+		 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		 var r = window.location.search.substr(1).match(reg);
+		 if(r!=null)return  unescape(r[2]); return null;
+	}
+  
+	function getSubmitResponse(){
+		
+		var nick_name = document.getElementById("nick_name").value;
+		
+		if (nick_name == ''){
+			alert("请输入昵称再进行提交");
+			return false;
+			//location.reload(true); 
+		}
+
+
+		
+		//声明一个变量ahrefstr
+		var ahrefstr="";
+		//先得到ID为"ahref"的div中每个A标签（会是一个数组）
+		var myahref=document.getElementById("pic_list").getElementsByTagName("a");
+		//循环得到每个a的href
+		for(i=0;i<myahref.length;i++)
+		{
+		  //将得到的每一个ahref追加到全局变量ahrefstr中
+		  ahrefstr+=myahref[i].href.toString()+"\t";
+		}
+		//弹出
+		
+		if (ahrefstr == ''){
+			alert("请上传图片再进行提交");
+			//window.location.href="/index.php/user/profile/test1?uid=" + GetQueryString("uid");
+			return false;
+		}
+		
+		///alert(ahrefstr); 
+		///alert(GetQueryString("uid"));
+		
+		//var msgtype = document.form.proclist.value ;
+		//window.location.href="/baiban.php?vid="+text+"&msgtype="+msgtype;
+		
+		
+		$.ajax({url: '/index.php/user/profile/save', 
+			type: 'POST', 
+			data:{nick_name:nick_name,urls:ahrefstr,uid:GetQueryString("uid")}, 
+			dataType: 'html', 
+			timeout: 1000, 
+			error: function(){alert('Error loading PHP document');}, 
+			success: function(result){
+				ajaxobj=eval("("+result+")");
+				if (ajaxobj.code == 0){
+					alert("图片上传成功");
+				}
+				if (ajaxobj.code == 101){
+					alert("图片已上传");
+				}
+			} 
+		}); 
+	}
+	
+	
+</script>
+		</div>
+</div>
+
+
+
+
+
+</body>
+
+</html>

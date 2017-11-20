@@ -1,0 +1,6 @@
+<!--template-->
+<template name="index_button">
+  <view class="btn-area">
+    <button type="defaule" bindtap="clickButton" style="position:fixed;">发布</button>
+  </view>
+</template>

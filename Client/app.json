@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/user/user",
+    "pages/logs/logs",
+    "pages/publish/publish",
+    "pages/detail/detail"
+  ],
+  "window":{
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#be181b",
+    "navigationBarTitleText": "51活动",
+    "navigationBarTextStyle":"#ffffff",
+    "enablePullDownRefresh": true,
+    "onReachBottom": true  
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#be181b",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/home.png",
+        "selectedIconPath": "images/tabBar/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "iconPath": "images/tabBar/pub.png",
+        "selectedIconPath": "images/tabBar/pub-active.png",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/tabBar/user.png",
+        "selectedIconPath": "images/tabBar/user-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": true
+}

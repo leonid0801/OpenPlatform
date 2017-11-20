@@ -1,0 +1,55 @@
+<?php include('inc/wx_before_body.php');?>
+<body class="wx_list">
+<?php foreach($this->userinfo as $key=>$info):?>	
+	<ul class="list arrow-right">
+		<?php if ($info['status'] == '1'){?>
+		<li>
+			<a href="http://wecar.qq.com/CommercePush/wx/orderDetail?commerce_id=<?php echo $info['id'] ?>&commerce_type=<?php echo $info['commerce_type']?>&dealer_id=<?php echo $info['dealer_id']?>">
+				<div class="lt">
+					<?php if ($info['commerce_type'] == 'sendinfo'){ ?>
+					<strong><?php echo  $info['commerce_name']  ?></strong>
+					<?php }else { ?>
+					<strong><?php echo $info['city'].' '.$info['name'].' '.$info['commerce_name']  ?></strong>
+					<?php } ?>
+					<span><?php echo $info['date']  ?></span>
+				</div>
+				<div class="rt">未联系 <em class="arrow_rt"></em></div>
+			</a>
+		</li>
+        <?php }else if ($info['status'] == '2'){?>
+        	<li>
+	            <a href="http://wecar.qq.com/CommercePush/wx/orderDetail?commerce_id=<?php echo $info['id'] ?>&commerce_type=<?php echo $info['commerce_type']?>&dealer_id=<?php echo $info['dealer_id']?>">
+		            <div class="lt">
+    		            <?php if ($info['commerce_type'] == 'sendinfo'){ ?>
+						<strong><?php echo  $info['commerce_name']  ?></strong>
+						<?php }else { ?>
+						<strong><?php echo $info['city'].' '.$info['name'].' '.$info['commerce_name']  ?></strong>
+     		            <?php } ?>
+						<span><?php echo $info['date']  ?></span>
+	                </div>
+                    <div class="rt succ">已联系 <em class="arrow_rt"></em></div>
+    	        </a>
+            </li>
+        <?php }else if ($info['status'] == '3'){?>
+	        <li>
+    	        <a href="http://wecar.qq.com/CommercePush/wx/orderDetail?commerce_id=<?php echo $info['id'] ?>&commerce_type=<?php echo $info['commerce_type']?>&dealer_id=<?php echo $info['dealer_id']?>">
+     	           	<div class="lt">
+						<?php if ($info['commerce_type'] == 'sendinfo'){ ?>
+						<strong><?php echo  $info['commerce_name']  ?></strong>
+						<?php }else { ?>
+     	              	<strong><?php echo $info['city'].' '.$info['name'].' '.$info['commerce_name']  ?></strong>
+						<?php } ?>
+     	              <span><?php echo $info['date']  ?></span>
+    	           </div>
+                   <div class="rt fail">联系未成功<em class="arrow_rt"></em></div>
+                </a>
+            </li>
+		<?php } ?>
+	</ul>
+
+<?php endforeach;?>
+
+</body>
+
+<?php include('inc/wx_after_body.php');?>
+

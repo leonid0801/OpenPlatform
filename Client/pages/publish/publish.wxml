@@ -1,0 +1,106 @@
+<!--pages/publish/publish.wxml-->
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+<template is="head" data="{{title: '发布'}}"/>
+
+<!--
+<picker bindchange="pickChange" value="{{index}}" range="{{array}}">
+  <view>
+    活动类型：{{array[index]}}
+  </view>
+</picker>
+-->
+
+<view class="weui-cells__title">活动类型：</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">当前选择</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker bindchange="bindPickerChange0" value="{{main_type_id}}" range="{{main_types}}">
+        <view class="weui-input">{{main_types[main_type_id]}}</view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+<view class="weui-cells__title">活动类型：</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">当前选择</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker bindchange="bindPickerChange1" value="{{sub_type_id}}" range="{{object}}">
+        <view class="weui-input">{{object[sub_type_id]}}</view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+
+<view class="weui-cells__title">活动开始日期：</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">当前选择</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <view class="weui-input">{{date}}</view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+ <!--
+<picker mode="date" value="{{date}}" start="2016-09-26" end="2017-10-10" bindchange="listenerDatePickerSelected">
+    <view>活动时间：<text>{{date}}</text></view>
+</picker>
+-->
+
+<!--
+<view class="section">
+  <textarea bindblur="textChange" placeholder="这是一个可以自动聚焦的textarea" auto-focus value="{{inputContent}}"/>
+</view>
+-->
+
+<!--通过数据绑定的方式动态获取js数据
+<image src="{{source}}" mode="aspecFill" style="width: 640rpx; height: 640rpx"/>
+-->
+<!--监听按钮
+<button type="primary" bindtap="listenerButtonChooseImage">点击我选择相册</button>
+-->
+
+<!--主要的按钮,点击背景没有效果hover-class="none"  
+<button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="setPrimary" hover-class="none" class="margin-button"> 
+        发布 
+</button>
+-->
+
+
+
+<view class="page_container">
+<view class="weui-cells__title">简介或摘要：</view>
+<view class="section">
+  <form bindsubmit="bindFormSubmit">
+    <!--<textarea placeholder="标题或简介" name="textarea"/>-->
+
+    <view class="page-body">
+    <view class="page-section">
+      <view class="textarea-wrp">
+        <textarea bindblur="textChange" name="textarea" placeholder="" style="height: 20em" />
+      </view>
+    </view>
+    </view>
+    <view class="weui-cells__title"></view>
+    <button formType="submit" type="primary" > 提交 </button>
+  </form>
+</view>
+</view>
+
+
+
+

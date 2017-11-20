@@ -1,0 +1,65 @@
+<!--index.wxml-->
+
+
+<!--i
+<import src="../../template/rec_index.wxml" />
+<view>
+	<scroll  class="scroll-box" scroll-y="true" upper-threshold="50" lower-threshold="50" >
+		<template is="joke_tpl" data="{{item}}" wx:for="{{req}}" wx:key="item.id"/>
+	</scroll >
+</view>
+
+-->
+
+<import src="../../template/rec_index.wxml" />
+<view>
+  <template is="joke_tpl" data="{{item}}" wx:for="{{reqs}}" wx:key="item.f_id"/>
+  <!--
+    <view class="index-loadmore" hidden="{{hideHeader}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">加载中……</view>
+    </view>
+  -->
+  <view class="weui-loadmore weui-loadmore_line weui-bg-transparent">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我是有底线的</view>
+  </view>
+</view>
+
+
+
+
+<!--
+  <view  
+    scroll-y="true" 
+    style="height:{{srollHeight}}px;"
+    scroll-top="{{scrollTop}}" 
+    bindscrolltoupper="{{topLoad ? 'topLoad' : ''}}" 
+    bindscrolltolower="{{bottomLoad ? 'bottomLoad' : ''}}"
+    scroll-into-view="{{toView}}" >
+    <template is="joke_tpl" data="{{item}}" wx:for="{{reqs}}" wx:key="item.id"/>
+  </view>
+-->
+
+
+<!--
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称     </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+-->
+
+
+
+
+
+
+
+
