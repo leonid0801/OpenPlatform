@@ -12,7 +12,6 @@ CREATE TABLE `t_client` (
 PRIMARY KEY (`f_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 DROP TABLE IF EXISTS `t_item`;
 CREATE TABLE `t_item` (
 `f_id`                    BIGINT NOT NULL AUTO_INCREMENT,
@@ -29,4 +28,27 @@ CREATE TABLE `t_item` (
 `f_created`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 `f_updated`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 PRIMARY KEY (`f_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user` (
+`f_uid`                     BIGINT NOT NULL AUTO_INCREMENT,
+`f_nickname`                VARCHAR(32)  NOT NULL DEFAULT '',
+`f_gender`                  VARCHAR(32)  NOT NULL DEFAULT '',
+`f_language`                VARCHAR(32)  NOT NULL DEFAULT '',
+`f_avatar_url`              VARCHAR(128)  NOT NULL DEFAULT '',
+`f_city`                    VARCHAR(32)  NOT NULL DEFAULT '',
+`f_country`                 VARCHAR(32)  NOT NULL DEFAULT '',
+`f_province`                VARCHAR(32)  NOT NULL DEFAULT '',
+`f_openid`                  VARCHAR(128) NOT NULL DEFAULT '',
+`f_tel_num`                 VARCHAR(32)  NOT NULL DEFAULT '',
+`f_wx`                      VARCHAR(32)  NOT NULL DEFAULT '',
+`f_weibo`                   VARCHAR(32)  NOT NULL DEFAULT '',
+`f_birthday`                VARCHAR(16) NOT NULL DEFAULT '',
+`f_stature`                 VARCHAR(16) NOT NULL DEFAULT '',
+`f_hometown`                VARCHAR(16) NOT NULL DEFAULT '',
+`f_portrait`                VARCHAR(64)  NOT NULL DEFAULT '',
+`f_created`                 DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+`f_updated`                 DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+PRIMARY KEY (`f_uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
