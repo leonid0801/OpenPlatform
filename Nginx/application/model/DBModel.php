@@ -365,6 +365,39 @@ class DBModel {
 			return false;
 		}
 	}
+
+    protected function duplicate_key_update($info,$where) {
+        try {
+            $fields = '(' . implode ( ",", array_keys ( $info ) ) . ')';
+            $values = '(' . str_repeat ( "?,", count ( $info ) - 1 ) . '?)';
+            $sql = "INSERT INTO $this->_table $fields values $values ON DUPLICATE KEY UPDATE {$where}";
+
+            //记录执行时间 start
+            if(defined('DEBUG_SQL') && DEBUG_SQL)
+            {
+                $start_time = microtime(1);
+            }
+
+            $dbh = $this->getDbh ( $this->_master_conf );
+            ///echo $sql;
+            $prepare = $dbh->prepare ( $sql );
+            $res = $prepare->execute ( array_values ( $info ) );
+            $dbh = null;
+
+            //记录执行时间 end
+            if(defined('DEBUG_SQL') && DEBUG_SQL)
+            {
+                $walltime = microtime(1) - $start_time;
+                self::$SQLS[] = "{$sql}|{$walltime}";
+            }
+
+            return $res;
+        } catch ( Exception $e ) {
+            $this->_logger->error ( $e->getMessage () );
+            $this->_logger->error ( "BAD SQL:{$sql}" );
+            return false;
+        }
+    }
 	
 	/**
 	 * update数据

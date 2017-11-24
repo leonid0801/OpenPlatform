@@ -15,6 +15,7 @@ include_once(APP_PATH."/application/controller/BaseController.php");
 include_once(APP_PATH."/application/model/DBModel.php");
 include_once(APP_PATH."/application/model/WxAppModel.php");
 include_once(APP_PATH."/application/model/ItemModel.php");
+include_once(APP_PATH."/application/model/UserModel.php");
 #include_once(APP_PATH."/application/model/ImageModel.php");
 
 $application = new Application ();

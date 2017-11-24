@@ -11,6 +11,7 @@ class Api_Wxapp extends BaseController{
 	public function _init() {
         $this->wxAppModel = new wxAppModel("t_client");
         $this->itemModel = new itemModel("t_item");
+        $this->userModel = new userModel("t_user");
     }
 	
 	//  ·�ɲ��ԣ�$HOST/index.php/api/wxapp/test
@@ -33,15 +34,19 @@ class Api_Wxapp extends BaseController{
 		
 		$session_id=`head -n 80 /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`;   //���3rd_session
 		//echo $session_id;
+        $cur_time = date("Y-m-d H:i:s",time());
 		$client_info = array(
 			'f_openid' => $openid,
 			'f_session_key' => $session_key,
 			'f_expires_in' => $expires_in,
 			'f_client_session' => $session_id,
-			'f_created' => date("Y-m-d H:i:s",time() ),
-			'f_updated' => date("Y-m-d H:i:s",time() ) 
+			'f_created' => $cur_time,
+			'f_updated' => $cur_time
 		);
 		$db_ret = $this->wxAppModel->addClient($client_info);
+        $upt_fields = "f_session_key='{$session_key}',f_updated='{$cur_time}',f_expires_in='{$expires_in}',f_client_session='{$session_id}'";
+        $this->userModel->dupKeyUpdate($client_info, $upt_fields);
+
 
         //{"code":"0","msg":"success","data":""}
         $result = array();
