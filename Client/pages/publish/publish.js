@@ -101,13 +101,21 @@ Page({
       method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: {"Content-Type":"application/x-www-form-urlencoded"}, // 设置请求的 header
       success: function (res) {
+        console.log('***********', res)
 
-
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 10000
-        })
+        if (res.data.code==0){
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 10000
+          })
+        }else{
+          wx.showToast({
+            title: "Error: "+res.data.code,
+            icon: 'loading',
+            duration: 10000
+          })
+        }
 
         setTimeout(function () {
           wx.hideToast()
