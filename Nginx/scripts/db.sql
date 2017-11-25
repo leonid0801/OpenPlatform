@@ -15,7 +15,7 @@ PRIMARY KEY (`f_id`)
 DROP TABLE IF EXISTS `t_item`;
 CREATE TABLE `t_item` (
 `f_id`                    BIGINT NOT NULL AUTO_INCREMENT,
-`f_openid`                VARCHAR(128) NOT NULL DEFAULT '',
+`f_uid`                   VARCHAR(128) NOT NULL DEFAULT '',
 `f_main_type_id`          INT NOT NULL DEFAULT '0',
 `f_sub_type_id`           INT NOT NULL DEFAULT '0',
 `f_textarea`              VARCHAR(1024)  NOT NULL DEFAULT '',

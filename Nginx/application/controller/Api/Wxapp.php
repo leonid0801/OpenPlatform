@@ -43,10 +43,9 @@ class Api_Wxapp extends BaseController{
 			'f_created' => $cur_time,
 			'f_updated' => $cur_time
 		);
-		$db_ret = $this->wxAppModel->addClient($client_info);
+		//$db_ret = $this->wxAppModel->addClient($client_info);
         $upt_fields = "f_session_key='{$session_key}',f_updated='{$cur_time}',f_expires_in='{$expires_in}',f_client_session='{$session_id}'";
-        $this->userModel->dupKeyUpdate($client_info, $upt_fields);
-
+        $db_ret = $this->userModel->dupKeyUpdate($client_info, $upt_fields);
 
         //{"code":"0","msg":"success","data":""}
         $result = array();
@@ -60,6 +59,8 @@ class Api_Wxapp extends BaseController{
 
     public function add_item(){
 
+        $result = array();
+
         $code = "";
         header("Content-type:text/html;charset=utf-8");
 
@@ -68,7 +69,16 @@ class Api_Wxapp extends BaseController{
             return;
         }
 
-        $open_id = $this->wxAppModel->getOpenidByClientSess($_POST['client_session']);
+        //$open_id = $this->wxAppModel->getOpenidByClientSess($_POST['client_session']);
+        $user_id = $this->userModel->getUserIdByClientSess($_POST['client_session']);
+
+        if (false == $user_id){
+            $result["code"]=1;
+            $result["msg"]="uid is none";
+            $result["data"]="";
+            echo json_encode($result);
+            return;
+        }
 
 
         if (array_key_exists('textarea', $_POST)
@@ -79,7 +89,7 @@ class Api_Wxapp extends BaseController{
             && array_key_exists('longitude', $_POST)
         ){
             $client_info = array(
-                'f_openid' => $open_id[0]['f_openid'],
+                'f_uid' => $user_id[0]['f_uid'],
                 'f_textarea' => $_POST['textarea'],
                 'f_main_type_id' => $_POST['main_type_id'],
                 'f_sub_type_id' => $_POST['sub_type_id'],
@@ -90,9 +100,14 @@ class Api_Wxapp extends BaseController{
                 'f_updated' => date("Y-m-d H:i:s",time() )
             );
             $db_ret = $this->itemModel->addClient($client_info);
-            echo $_POST['textarea']."123";
+            if ($db_ret){
+                $result["code"]=0;
+                $result["msg"]="success";
+                $result["data"]="";
+                echo json_encode($result);
+                return;
+            }
         }
-
     }
 
     public function get_items(){
@@ -120,19 +135,19 @@ class Api_Wxapp extends BaseController{
                 return;
             }
 
-            $db_openid = $this->wxAppModel->getOpenidByClientSess($client_session);
-            if (sizeof($db_openid) < 1){
+            $db_uid = $this->userModel->getUserIdByClientSess($client_session);
+            if (sizeof($db_uid) < 1){
                 $result["code"]=1;
                 $result["msg"]="failed";
                 $result["data"]="";
                 echo json_encode($result);
                 return;
             }
-            $client_openid = $db_openid[0]['f_openid'];
+            $client_uid = $db_uid[0]['f_uid'];
 
-            $openid = $db_res[0]['f_openid'];
+            $openid = $db_res[0]['f_uid'];
             $can_modify = false;
-            if ($client_openid==$openid){
+            if ($client_uid==$openid){
                 $can_modify=true;
             }
 
@@ -156,6 +171,27 @@ class Api_Wxapp extends BaseController{
         }
     }
 
+    private  function  extract($arr_item, $arr_user){
+
+        $arr_ret = Array();
+        $user_info = Array();
+        foreach ($arr_user as $key => $value){
+            $f_uid = $value['f_uid'];
+            $user_info[$f_uid] = Array('f_nickname'=>$value['f_nickname'], 'f_avatar_url'=>$value['f_avatar_url']);
+        }
+
+        foreach ($arr_item as $key => $value){
+            $arr_ret[$key]['f_id'] = $value['f_id'];
+            $arr_ret[$key]['f_uid'] = $value['f_uid'];
+            $arr_ret[$key]['f_textarea'] = $value['f_textarea'];
+            $arr_ret[$key]['f_created'] = $value['f_created'];
+            $arr_ret[$key]['f_nickname'] = '';
+            $arr_ret[$key]['f_avatar_url'] = '';
+        }
+
+        return $arr_ret;
+    }
+
     public function get_more(){
         $ret = array();
 
@@ -171,11 +207,27 @@ class Api_Wxapp extends BaseController{
         $max_item_index = (int)$_GET["max_item_index"];
         $results = $this->itemModel->getMoreItemList("1=1", $page_index*$page_size, $page_size);
 
+        $arr_uid = Array();
         // get the newest item index
         $res_max_item_index = 0;
         if (sizeof($results)>0){
             $res_max_item_index = $results[0]["f_id"];
+            // get user id array
+            foreach ($results as $key => $value){
+                array_push($arr_uid, $value["f_uid"]);
+            }
         }
+
+        if (sizeof($arr_uid) < 1){
+            $ret["code"]=1;
+            $ret["msg"]="failed";
+            $ret["data"]="user info none";
+            echo json_encode($ret);
+            return;
+        }
+
+        $user_info = $this->userModel->getUserInfo($arr_uid);
+        $ext_res = $this->extract($results, $user_info);
 
         if($res_max_item_index <= $max_item_index){
             $ret["code"]=1;
@@ -187,7 +239,7 @@ class Api_Wxapp extends BaseController{
 
         $ret["code"]=0;
         $ret["msg"]="success";
-        $ret["data"]=$results;
+        $ret["data"]=$ext_res;
         $ret["max_item_index"]=$res_max_item_index;
         echo json_encode($ret);
     }
