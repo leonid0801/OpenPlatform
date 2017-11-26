@@ -142,7 +142,7 @@ getTopData: function () {
   var pageIndex = 0;
   var cur_max_item_index = wx.getStorageSync("max_item_index");
   wx.request({
-    url: 'https://wtmb.online/index.php/api/wxapp/get_more',
+    url: 'https://wtmb.online/index.php/api/wxapp/get_top_more',
     data: {
       page: pageIndex,
       page_size: self.data.page_size,
