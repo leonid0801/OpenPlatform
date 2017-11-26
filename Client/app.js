@@ -1,5 +1,8 @@
 //app.js
 App({
+  globalData: {
+    userInfo: null
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -18,7 +21,7 @@ App({
             //用户登录凭证（有效期五分钟）
             var js_code = res.code
             if (js_code) {
-              console.log("ccccccccccccc", res.code)
+              console.log("[js_code]", res.code)
               //发起网络请求
               wx.request({
                 url: 'https://wtmb.online/index.php/api/wxapp/get_seq',
@@ -29,13 +32,38 @@ App({
                 method: 'GET',
                 header: { 'content-type': 'application/json' },
                 success: function (openIdRes) {
+
                   if (openIdRes.data.code==0){
                     var client_session = openIdRes.data.data.client_session
                     console.log("[client_session]", client_session)
                     // 写入
                     wx.setStorageSync('client_session', client_session)
+
+                    wx.getUserInfo({
+                      success: res => {
+                        console.log('userInfo....', res.userInfo)
+                        wx.setStorageSync('user_info', res.userInfo)
+                        wx.request({
+                          url: 'https://wtmb.online/index.php/api/wxapp/upt_user_info',
+                          data: {
+                            "client_session": client_session,
+                            "nickname": res.userInfo.nickName,
+                            "avatar_url": res.userInfo.avatarUrl,
+                            "city": res.userInfo.city,
+                            "gender": res.userInfo.gender,
+                            "language": res.userInfo.language,
+                            "province": res.userInfo.province,
+                            "country": res.userInfo.country,
+                          },
+                          method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                          header: { "Content-Type": "application/x-www-form-urlencoded" }, // 设置请求的 header
+                          success: function (res) {
+                            console.log('saveUserInfo……', res)
+                          }
+                        })
+                      }
+                    })
                   }
-                  //weChatUserInfo.openId = openIdRes.data.openid;
                   console.log(openIdRes)
                 }
               })
@@ -46,8 +74,6 @@ App({
         });
       }
     });    
-
-
 
     // 获取用户信息
     wx.getSetting({
@@ -71,7 +97,41 @@ App({
     })
   },
 
-  globalData: {
-    userInfo: null
+
+
+  saveUserInfo: function (client_session) {
+
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+        console.log('userInfo....', res.userInfo)
+        wx.setStorageSync('user_info', res.userInfo)
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    })
+
+    var user_info = res.userInfo
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!client_session', client_session)
+    wx.request({
+      url: 'https://wtmb.online/index.php/api/wxapp/upt_user_info',
+      data: {
+        "client_session": client_session,
+        "nickname": user_info.nickName,
+        "avatar_url": user_info.avatarUrl,
+        "city": user_info.city,
+        "gender": user_info.gender,
+        "language": user_info.language,
+        "province": user_info.province,
+        "country": user_info.country,
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: { "Content-Type": "application/x-www-form-urlencoded" }, // 设置请求的 header
+      success: function (res) {
+        console.log('saveUserInfo……', res)
+      }
+    })
   }
 })

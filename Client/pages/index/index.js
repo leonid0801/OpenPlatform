@@ -22,13 +22,6 @@ Page({
     topLoad: true,
     bottomLoad: true,
 
-    req: [
-    {
-      "content": "昨天下班坐公交车回家，白天上班坐着坐多了想站一会儿， 就把座位让给了一个阿姨，阿姨道谢一番开始和我聊天，聊了挺多的。 后来我要下车了，阿姨热情的和我道别。 下车的一瞬间我回头看了一眼，只见那阿姨对着手机说：“儿子， 刚才遇见一个姑娘特不错，可惜长得不好看，不然我肯定帮你要号码！” 靠，阿姨你下车，我保证不打死你！",
-      "hashId": "d4d750debbb73ced161066368348d611",
-      "unixtime": 1418814837,
-      "updatetime": "2014-12-17 19:13:57"
-    }]
   },
   
   //事件处理函数
@@ -52,7 +45,9 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } 
+    /*
+    else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -68,7 +63,7 @@ Page({
           app.globalData.userInfo = res.userInfo
           console.log('userInfo....', res.userInfo)
           wx.setStorageSync('user_info', res.userInfo)
-          //console.log(app.globalData.userInfo);
+
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
@@ -77,6 +72,7 @@ Page({
       })
       
     }
+    */
 
     wx.setStorageSync('max_item_index', 0)
     // bug fix
@@ -85,21 +81,6 @@ Page({
     })
 
     this.getTopData();
-    /*
-    wx.request({
-      url: 'https://wtmb.online/index.php/api/wxapp/get_items',
-      data: { },
-      method: 'GET',
-      header: { 'content-type': 'application/json' },
-      success: openIdRes => {
-
-        this.setData({
-          reqs: openIdRes.data
-        });
-        console.log(openIdRes.data);
-
-      }
-    })*/
   },
 
 onShow: function () {  //在onShow中根据屏幕窗口宽度动态设置scroll-view的高度
@@ -249,14 +230,7 @@ getMoreData: function () {
   })
 },
 
-getUserInfo: function(e) {
-  console.log(e)
-  app.globalData.userInfo = e.detail.userInfo
-  this.setData({
-    userInfo: e.detail.userInfo,
-    hasUserInfo: true
-  })
-},
+
 
   //事件处理函数
   clickButton: function () {
@@ -286,7 +260,32 @@ getUserInfo: function(e) {
     
   },
 
+  saveUserInfo: function () {
+    
+    var that = this;
+    var client_session = wx.getStorageSync("client_session");
+    var user_info = wx.getStorageSync("user_info");
+    console.log('!!!!!!!!!!!client_session', client_session)
+    
 
+    wx.request({
+      url: 'https://wtmb.online/index.php/api/wxapp/upt_user_info',
+      data: {
+        "client_session": client_session,
+        "nickname": user_info.nickName,
+        "avatar_url": user_info.avatarUrl,
+        "city": user_info.city,
+        "gender": user_info.gender,
+        "language": user_info.language,
+        "province": user_info.province,
+        "country": user_info.country,
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: { "Content-Type": "application/x-www-form-urlencoded" }, // 设置请求的 header
+      success: function (res) {
+        console.log('saveUserInfo……', res)
 
-  
+      }
+    })
+  }
 })
