@@ -61,6 +61,16 @@ class UserModel extends DBModel {
         return $this->select(parent::ALL_FIELD, "f_uid in ({$nfields})");
     }
 
+
+    public function setUserInfo($info,$where){
+        return $this->update($info,$where);
+    }
+
+
+    public function uptUserInfo($arr_info,$where){
+        return $this->update($arr_info,$where);
+    }
+
 	//设置为已读
 	public function setRead($info,$where){
 		return $this->update($info,$where);

@@ -12,6 +12,7 @@ class Api_Wxapp extends BaseController{
         $this->wxAppModel = new wxAppModel("t_client");
         $this->itemModel = new itemModel("t_item");
         $this->userModel = new userModel("t_user");
+        $this->user = new User();
     }
 	
 	//  ·�ɲ��ԣ�$HOST/index.php/api/wxapp/test
@@ -185,8 +186,8 @@ class Api_Wxapp extends BaseController{
             $arr_ret[$key]['f_uid'] = $value['f_uid'];
             $arr_ret[$key]['f_textarea'] = $value['f_textarea'];
             $arr_ret[$key]['f_created'] = $value['f_created'];
-            $arr_ret[$key]['f_nickname'] = '';
-            $arr_ret[$key]['f_avatar_url'] = '';
+            $arr_ret[$key]['f_nickname'] = $user_info[$value['f_uid']]['f_nickname'];
+            $arr_ret[$key]['f_avatar_url'] = $user_info[$value['f_uid']]['f_avatar_url'];
         }
 
         return $arr_ret;
@@ -265,6 +266,13 @@ class Api_Wxapp extends BaseController{
         echo json_encode($ret);
 
     }
+
+    public function upt_user_info(){
+        $json_ret = $this->user->uptUserInfo($_POST);
+        echo $json_ret;
+    }
+
+
 
 }
 
