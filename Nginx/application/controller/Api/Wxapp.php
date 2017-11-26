@@ -172,99 +172,14 @@ class Api_Wxapp extends BaseController{
         }
     }
 
-    private  function  extract($arr_item, $arr_user){
-
-        $arr_ret = Array();
-        $user_info = Array();
-        foreach ($arr_user as $key => $value){
-            $f_uid = $value['f_uid'];
-            $user_info[$f_uid] = Array('f_nickname'=>$value['f_nickname'], 'f_avatar_url'=>$value['f_avatar_url']);
-        }
-
-        foreach ($arr_item as $key => $value){
-            $arr_ret[$key]['f_id'] = $value['f_id'];
-            $arr_ret[$key]['f_uid'] = $value['f_uid'];
-            $arr_ret[$key]['f_textarea'] = $value['f_textarea'];
-            $arr_ret[$key]['f_created'] = $value['f_created'];
-            $arr_ret[$key]['f_nickname'] = $user_info[$value['f_uid']]['f_nickname'];
-            $arr_ret[$key]['f_avatar_url'] = $user_info[$value['f_uid']]['f_avatar_url'];
-        }
-
-        return $arr_ret;
-    }
-
-    public function get_more(){
-        $ret = array();
-
-        if (!array_key_exists('page', $_GET) or !array_key_exists('page_size', $_GET) or !array_key_exists('max_item_index', $_GET)){
-            $ret["code"]=1;
-            $ret["msg"]="failed";
-            $ret["data"]="";
-            echo json_encode($ret);
-            return;
-        }
-        $page_index = (int)$_GET["page"];
-        $page_size = (int)$_GET["page_size"];
-        $max_item_index = (int)$_GET["max_item_index"];
-        $results = $this->itemModel->getMoreItemList("1=1", $page_index*$page_size, $page_size);
-
-        $arr_uid = Array();
-        // get the newest item index
-        $res_max_item_index = 0;
-        if (sizeof($results)>0){
-            $res_max_item_index = $results[0]["f_id"];
-            // get user id array
-            foreach ($results as $key => $value){
-                array_push($arr_uid, $value["f_uid"]);
-            }
-        }
-
-        if (sizeof($arr_uid) < 1){
-            $ret["code"]=1;
-            $ret["msg"]="failed";
-            $ret["data"]="user info none";
-            echo json_encode($ret);
-            return;
-        }
-
-        $user_info = $this->userModel->getUserInfo($arr_uid);
-        $ext_res = $this->extract($results, $user_info);
-
-        if($res_max_item_index <= $max_item_index){
-            $ret["code"]=1;
-            $ret["msg"]="failed";
-            $ret["data"]="no update";
-            echo json_encode($ret);
-            return;
-        }
-
-        $ret["code"]=0;
-        $ret["msg"]="success";
-        $ret["data"]=$ext_res;
-        $ret["max_item_index"]=$res_max_item_index;
+    public function get_top_more(){
+        $ret = $this->user->getTopMore($_GET);
         echo json_encode($ret);
     }
-
 
     public function get_bottom_data(){
-        $ret = array();
-        if (!array_key_exists('page', $_GET) or !array_key_exists('page_size', $_GET)){
-            $ret["code"]=1;
-            $ret["msg"]="failed";
-            $ret["data"]="";
-            echo json_encode($ret);
-            return;
-        }
-
-        $page_index = (int)$_GET["page"];
-        $page_size = (int)$_GET["page_size"];
-        $results = $this->itemModel->getMoreItemList("1=1", $page_index*$page_size, $page_size);
-
-        $ret["code"]=0;
-        $ret["msg"]="success";
-        $ret["data"]=$results;
+        $ret = $this->user->getBottomData($_GET);
         echo json_encode($ret);
-
     }
 
     public function upt_user_info(){
