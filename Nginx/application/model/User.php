@@ -147,6 +147,26 @@ class User extends LogicBase {
         return $arr_ret;
     }
 
+    private  function  joinUserInfo($results){
+        $arr_uid = Array();
+        if (sizeof($results)>0){
+            // get user id array
+            foreach ($results as $key => $value){
+                array_push($arr_uid, $value["f_uid"]);
+            }
+        }
+
+        if (sizeof($arr_uid) < 1){
+            return false;
+        }
+
+        $user_info = $this->userModel->getUserInfo($arr_uid);
+        $ext_res = $this->extract($results, $user_info);
+
+        return $ext_res;
+
+    }
+
     public function getTopMore($get_info){
         $ret = array();
         if (!array_key_exists('page', $get_info) or !array_key_exists('page_size', $get_info) or !array_key_exists('max_item_index', $get_info)){
@@ -160,26 +180,19 @@ class User extends LogicBase {
         $max_item_index = (int)$get_info["max_item_index"];
         $results = $this->itemModel->getMoreItemList("1=1", $page_index*$page_size, $page_size);
 
-        $arr_uid = Array();
+
         // get the newest item index
         $res_max_item_index = 0;
         if (sizeof($results)>0){
             $res_max_item_index = $results[0]["f_id"];
-            // get user id array
-            foreach ($results as $key => $value){
-                array_push($arr_uid, $value["f_uid"]);
-            }
         }
 
-        if (sizeof($arr_uid) < 1){
+        $ext_res = $this->joinUserInfo($results);
+        if (false == $ext_res){
             $ret["code"]=1;
-            $ret["msg"]="failed";
-            $ret["data"]="user info none";
+            $ret["msg"]="user info none";
             return $ret;
         }
-
-        $user_info = $this->userModel->getUserInfo($arr_uid);
-        $ext_res = $this->extract($results, $user_info);
 
         if($res_max_item_index <= $max_item_index){
             $ret["code"]=1;
@@ -209,9 +222,16 @@ class User extends LogicBase {
         $page_size = (int)$get_info["page_size"];
         $results = $this->itemModel->getMoreItemList("1=1", $page_index*$page_size, $page_size);
 
+        $ext_res = $this->joinUserInfo($results);
+        if (false == $ext_res){
+            $ret["code"]=1;
+            $ret["msg"]="user info none";
+            return $ret;
+        }
+
         $ret["code"]=0;
         $ret["msg"]="success";
-        $ret["data"]=$results;
+        $ret["data"]=$ext_res;
         return $ret;
 
     }
