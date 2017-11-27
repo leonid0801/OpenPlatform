@@ -20,43 +20,8 @@ class Api_Wxapp extends BaseController{
 		var_dump($_GET);
 		echo "Here!";
 	}
-	
-	public function get_seq(){
-		$code = "";
-		if(isset($_GET['code'])){
-			$code = $_GET['code'];
-		}
-		$url='https://api.weixin.qq.com/sns/jscode2session?appid='.APP_ID.'&secret='.APP_SECRET.'&js_code='.$code.'&grant_type=authorization_code';
 
-		$ret = $this->curl($url);
-		$session_key = json_decode($ret)->session_key ;
-		$expires_in = json_decode($ret)->expires_in ;
-		$openid = json_decode($ret)->openid ;
-		
-		$session_id=`head -n 80 /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`;   //���3rd_session
-		//echo $session_id;
-        $cur_time = date("Y-m-d H:i:s",time());
-		$client_info = array(
-			'f_openid' => $openid,
-			'f_session_key' => $session_key,
-			'f_expires_in' => $expires_in,
-			'f_client_session' => $session_id,
-			'f_created' => $cur_time,
-			'f_updated' => $cur_time
-		);
-		//$db_ret = $this->wxAppModel->addClient($client_info);
-        $upt_fields = "f_session_key='{$session_key}',f_updated='{$cur_time}',f_expires_in='{$expires_in}',f_client_session='{$session_id}'";
-        $db_ret = $this->userModel->dupKeyUpdate($client_info, $upt_fields);
 
-        //{"code":"0","msg":"success","data":""}
-        $result = array();
-		if ($db_ret){
-            $result["code"]=0;
-            $result["msg"]="success";
-            $result["data"]["client_session"]=$session_id;
-			echo json_encode($result);
-		}
-	}
 
     public function add_item(){
 
@@ -170,6 +135,11 @@ class Api_Wxapp extends BaseController{
             );
             echo json_encode($result);
         }
+    }
+
+    public function get_seq(){
+        $ret = $this->user->getClientSession($_GET);
+        echo json_encode($ret);
     }
 
     public function get_top_more(){

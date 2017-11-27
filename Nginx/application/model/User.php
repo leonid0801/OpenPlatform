@@ -38,6 +38,48 @@ class User extends LogicBase {
         return $obj;
     }
 
+    public function getClientSession($get_info){
+
+        $code = "";
+        if(isset($get_info['code'])){
+            $code = $get_info['code'];
+        }
+        $url='https://api.weixin.qq.com/sns/jscode2session?appid='.APP_ID.'&secret='.APP_SECRET.'&js_code='.$code.'&grant_type=authorization_code';
+
+        $ret = $this->curl($url);
+        $session_key = json_decode($ret)->session_key ;
+        $expires_in = json_decode($ret)->expires_in ;
+        $openid = json_decode($ret)->openid ;
+
+        $session_id=`head -n 80 /dev/urandom | tr -dc A-Za-z0-9 | head -c 16`;   //���3rd_session
+        //echo $session_id;
+        $cur_time = date("Y-m-d H:i:s",time());
+        $client_info = array(
+            'f_openid' => $openid,
+            'f_session_key' => $session_key,
+            'f_expires_in' => $expires_in,
+            'f_client_session' => $session_id,
+            'f_created' => $cur_time,
+            'f_updated' => $cur_time
+        );
+        //$db_ret = $this->wxAppModel->addClient($client_info);
+        $upt_fields = "f_session_key='{$session_key}',f_updated='{$cur_time}',f_expires_in='{$expires_in}',f_client_session='{$session_id}'";
+        $db_ret = $this->userModel->dupKeyUpdate($client_info, $upt_fields);
+
+        //{"code":"0","msg":"success","data":""}
+        $result = array();
+        if ($db_ret){
+            $result["code"]=0;
+            $result["msg"]="success";
+            $result["data"]["client_session"]=$session_id;
+            return $result;
+
+        }
+
+
+    }
+
+
     public function uptUserInfo($post_info){
         $ret = array();
         if (
@@ -55,9 +97,11 @@ class User extends LogicBase {
             return json_encode($ret);
         }
 
+        $this->logs->debug("Nickname: ".$post_info['nickname'], __FILE__, __LINE__);
+
         $arr_tmp = Array(
             "f_avatar_url"=>$post_info['avatar_url'],
-            "f_nickname"=>$post_info['nickname'],
+            "f_nickname"=>$this->filter($post_info['nickname']),
             "f_city"=>$post_info['city'],
             "f_gender"=>$post_info['gender'],
             "f_language"=>$post_info['language'],
