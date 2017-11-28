@@ -2,7 +2,6 @@
 /**
  * @desc 	App view
  * @name 	View 
- * @author 	<bayliang@tencent.com>
  * @date 	2012-9-5
  */
 class View {
