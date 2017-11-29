@@ -13,7 +13,7 @@ Page({
     var item_id = options.f_id;
     var client_session = wx.getStorageSync('client_session');
     wx.request({
-      url: 'https://wtmb.online/index.php/api/wxapp/get_item_detail',
+      url: 'https://bjwob.top/index.php/api/wxapp/get_item_detail',
       data: {
         f_id: item_id,
         client_session: client_session

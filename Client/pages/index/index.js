@@ -142,7 +142,7 @@ getTopData: function () {
   var pageIndex = 0;
   var cur_max_item_index = wx.getStorageSync("max_item_index");
   wx.request({
-    url: 'https://wtmb.online/index.php/api/wxapp/get_top_more',
+    url: 'https://bjwob.top/index.php/api/wxapp/get_top_more',
     data: {
       page: pageIndex,
       page_size: self.data.page_size,
@@ -190,7 +190,7 @@ getMoreData: function () {
   console.log('pageIndex:', pageIndex);
   pageIndex++;
   wx.request({
-    url: 'https://wtmb.online/index.php/api/wxapp/get_bottom_data',
+    url: 'https://bjwob.top/index.php/api/wxapp/get_bottom_data',
     data: {
       page: pageIndex,
       page_size: self.data.page_size,
@@ -269,7 +269,7 @@ getMoreData: function () {
     
 
     wx.request({
-      url: 'https://wtmb.online/index.php/api/wxapp/upt_user_info',
+      url: 'https://bjwob.top/index.php/api/wxapp/upt_user_info',
       data: {
         "client_session": client_session,
         "nickname": user_info.nickName,

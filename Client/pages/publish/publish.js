@@ -88,7 +88,7 @@ Page({
     console.log('client_session....', client_session)
 
     wx.request({
-      url: 'https://wtmb.online/index.php/api/wxapp/add_item',
+      url: 'https://bjwob.top/index.php/api/wxapp/add_item',
       data: {
         "main_type_id": this.data.main_type_id,
         "sub_type_id": this.data.sub_type_id,

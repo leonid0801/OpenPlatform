@@ -24,8 +24,8 @@ App({
               console.log("[js_code]", res.code)
               //发起网络请求
               wx.request({
-                url: 'https://wtmb.online/index.php/api/wxapp/get_seq',
-                //url: 'https://wxapi.hotapp.cn/proxy/?appkey=hotapp11377340&url=https://www.wtmb.online/wx.php',
+                url: 'https://bjwob.top/index.php/api/wxapp/get_seq',
+                //url: 'https://wxapi.hotapp.cn/proxy/?appkey=hotapp11377340&url=https://www.bjwob.top/wx.php',
                 data: {
                   code: js_code
                 },
@@ -44,7 +44,7 @@ App({
                         console.log('userInfo....', res.userInfo)
                         wx.setStorageSync('user_info', res.userInfo)
                         wx.request({
-                          url: 'https://wtmb.online/index.php/api/wxapp/upt_user_info',
+                          url: 'https://bjwob.top/index.php/api/wxapp/upt_user_info',
                           data: {
                             "client_session": client_session,
                             "nickname": res.userInfo.nickName,
@@ -116,7 +116,7 @@ App({
     var user_info = res.userInfo
     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!client_session', client_session)
     wx.request({
-      url: 'https://wtmb.online/index.php/api/wxapp/upt_user_info',
+      url: 'https://bjwob.top/index.php/api/wxapp/upt_user_info',
       data: {
         "client_session": client_session,
         "nickname": user_info.nickName,
