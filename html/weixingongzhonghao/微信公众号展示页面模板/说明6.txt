@@ -1,0 +1,6 @@
+微信公众号展示系统html
+
+官方网站：http://www.pinghai.org
+
+
+直接打开index.html文件替换文字即可，方便简单！
