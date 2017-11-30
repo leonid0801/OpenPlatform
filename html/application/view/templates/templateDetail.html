@@ -1,0 +1,93 @@
+<?php include('inc/wx_before_body.php');?>
+<body class="wx_detail">
+	<ul class="detail">
+	<?php 
+		
+		$item = $this->userinfo  ;
+		if( $item['commerce_type'] != 'sendinfo'){
+
+			if ($item['province'] == $item['city']){
+				$user = $item['city'].' '.$item['name']   ;
+			}else {
+				$user = $item['province'].' '.$item['city'].' '.$item['name']   ;
+			}
+		}
+	?>	
+	<?php if( $item['commerce_type'] === 'order') {?>	
+	<!-- 新车询价 begin -->
+		<li>
+			<h1><?php echo $user.' '.$item['type_name'] ?></h1>
+			<cite><?php echo $item['date']?></cite>
+		</li>
+		<li><label>车型：</label><?php echo $item['carinfo'] ?></li>
+		<li>
+			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
+		</li>
+		<li>
+			<label>时间：</label><?php echo $item['insert_time']?>
+		</li>
+		<li>
+			<table><tr><td nowrap="nowrap">备注：</td><td><?php echo $item['remark']?></td></tr></table>
+		</li>
+	<!-- 新车询价 end -->
+
+
+	<?php }else if ( $item['commerce_type'] === 'repair' ){?>
+	<!-- 预约维修 begin -->
+		<li>
+			<h1><?php echo $user ?></h1>
+			<cite><?php echo $item['date']?></cite>
+		</li>
+		<li><label>车型：</label><?php echo $item['carinfo'] ?></li>
+		<li>
+			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
+		</li>
+		<li>
+			<table><tr><td nowrap="nowrap">故障类型：</td><td><?php echo $item['type_name']?></td></tr></table>
+		</li>
+		<li>
+			<label>预约时间：</label><?php echo $item['repair_time']?> 
+		</li>
+		<li>
+			<label>时间：</label><?php echo $item['insert_time']?>
+		</li>
+		<li>
+			<table><tr><td nowrap="nowrap">备注：</td><td><?php echo $item['remark']?></td></tr></table>
+		</li>
+	<!-- 预约维修 end -->
+	
+	<?php }else if ( $item['commerce_type'] === 'act' ){?>
+	<!-- 活动报名 begin -->
+		<li>
+			<h1> <?php echo $user ?> <br/><span>【<?php echo $item['actname']?>】</span></h1>
+			<cite><?php echo $item['date']?></cite>
+		</li>
+		<li><?php echo $item['carinfo'] ?></li>
+		<li>
+			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
+		</li>
+		<li>
+			<label>时间：</label><?php echo $item['insert_time']?>
+		</li>
+	<!-- 活动报名 end -->
+	
+
+
+	<?php }else if ( $item['commerce_type'] === 'sendinfo' ){?>
+	<!-- 用户短信获取地址 begin -->
+		<li>
+			<h1>用户短信获取地址</h1>
+			<cite><?php echo $item['date']?></cite>
+		</li>
+		<li>
+			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
+		</li>
+		<li>
+			<label>时间：</label><?php echo $item['insert_time']?>
+		</li>
+	<?php } ?>	
+	
+		
+	</ul>
+</body>
+<?php include('inc/wx_after_body.php');?>
