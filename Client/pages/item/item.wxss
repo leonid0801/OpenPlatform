@@ -1,0 +1,30 @@
+/**index.wxss**/
+
+page {
+	background-color: #eee;
+}
+
+.btn-area {
+ margin-top: 0;
+ width: 100%;
+}
+
+
+.item-header {
+	overflow: hidden;
+}
+
+.item-body {
+	padding: 8px 0;
+}
+
+/*列表元素样式*/
+.list-item {
+	background-color: #fff;
+	margin: 5rpx 0;
+	padding: 10px;
+	color: #616161;
+	font-size: 14px;
+	line-height: 150%;
+}
+

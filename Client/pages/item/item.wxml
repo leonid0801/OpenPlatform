@@ -1,0 +1,9 @@
+
+
+<import src="../../template/item.wxml" />
+<image src="../../images/tabBar/back.png"
+  style="width:100rpx;height:100rpx" bindtap="backTo">
+</image> 
+<view>
+  <template is="item_tpl" data="{{item}}" wx:for="{{reqs}}" wx:key="item.f_id"/>
+</view>

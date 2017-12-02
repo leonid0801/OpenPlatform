@@ -1,4 +1,12 @@
 <view class="container">
   <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
   <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+ 
+</view>
+
+<view class="page-section">
+  <view class="flex-wrp" style="flex-direction:column;">
+    <view class="flex-item flex-item-V demo-text-1" bindtap="toItemList"></view>
+  </view>
 </view>

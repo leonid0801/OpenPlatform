@@ -4,16 +4,15 @@
     "pages/user/user",
     "pages/logs/logs",
     "pages/publish/publish",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/item/item"
   ],
   "window":{
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#be181b",
     "navigationBarTitleText": "51活动",
-    "navigationBarTextStyle":"#ffffff",
-    "enablePullDownRefresh": true,
-    "onReachBottom": true  
+    "navigationBarTextStyle":"#ffffff"
   },
   "tabBar": {
     "color": "#333",

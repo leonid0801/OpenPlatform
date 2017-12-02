@@ -1,0 +1,8 @@
+
+<template name="item_tpl">
+	<view class="list-item" bindtap="toast" id="{{item.f_id}}">
+    <view class="item-body">
+			<text>{{item.f_textarea}}</text>
+		</view>
+	</view>	
+</template>
