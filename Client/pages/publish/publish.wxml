@@ -47,8 +47,23 @@
       <view class="weui-label">当前选择</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2099-09-01" bindchange="bindDateChange">
         <view class="weui-input">{{date}}</view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+
+<view class="weui-cells__title">活动完成日期：</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <view class="weui-label">当前选择</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2099-09-01" bindchange="bindFinDateChange">
+        <view class="weui-input">{{fin_date}}</view>
       </picker>
     </view>
   </view>

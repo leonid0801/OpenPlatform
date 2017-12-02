@@ -1,54 +1,37 @@
-var app = getApp();
+
+var appInstance = getApp();
+var globalData = appInstance.globalData;
 
 var initData = 'this is first line\nthis is second line';
-
+var sys_date = new Date();
+var cur_date = sys_date.getFullYear() + '-' + (sys_date.getMonth()+1) + '-' + sys_date.getDate();
 Page({
   data: {
     text: initData,
-    array: ['旅游', '穿越', '单身交友', '婚恋服务', 'K歌', '其它'],
     index: 0,
     inputContent: "",
-    date: '2016-09-26',
+    date: cur_date,
+    fin_date: cur_date,
 
     latitude: '',
     longitude: '',
 
     /*type*/
-    main_types: [],
-    objectArray: [
-      {
-        main_type: "旅游",
-        id: 0,
-        array: ["周边游", "国内游", "境外游", "自驾游", "穿越", "其它"]
-      },
-      {
-        main_type: "活动",
-        id: 1,
-        array: ["婚恋服务", "单身交友", "游泳", "K歌", "桌游", "聚餐", "其它"]
-      },
-      {
-        main_type: "户外",
-        id: 2,
-        array: ["爬山", "撕名牌", "景点参观", "钓鱼", "其它"]
-      },
-      {
-        main_type: "摄影",
-        id: 3,
-        array: ["自然风景", "人像写真", "其它"]
-      }
-    ],
     object: [],
     main_type_id: 0,
     sub_type_id: 0  
   },
 
   onLoad: function () {
-    var objectArray = this.data.objectArray
+    var objectArray = globalData.typeObjectArray
     var main_types = []
     for (var i = 0; i < objectArray.length; i++) {
       main_types.push(objectArray[i].main_type, )
     }
-    this.setData({ main_types: main_types, object: objectArray[this.data.main_type_id].array })
+    this.setData({ 
+      main_types: main_types, 
+      object: objectArray[this.data.main_type_id].array 
+    })
 
     var that = this;
     wx.getLocation({
@@ -61,6 +44,17 @@ Page({
       }
     })
   },
+
+  bindPickerChange0: function (e) {
+    this.setData({ main_type_id: e.detail.value, sub_type_id: 0 })
+    var objectArray = globalData.typeObjectArray
+    this.setData({ object: objectArray[this.data.main_type_id].array })
+  },
+  bindPickerChange1: function (e) {
+    this.setData({
+      sub_type_id: e.detail.value
+    })
+  },  
 
   pickChange: function (e) {
     this.setData({
@@ -94,6 +88,7 @@ Page({
         "sub_type_id": this.data.sub_type_id,
         "textarea": e.detail.value.textarea,
         "date": this.data.date,
+        "fin_date": this.data.fin_date,
         "latitude": this.data.latitude,
         "longitude": this.data.longitude,
         "client_session": client_session
@@ -147,21 +142,18 @@ Page({
   */
   bindDateChange: function (e) {
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      fin_date: e.detail.value
     })
   },
-
-
-  bindPickerChange0: function (e) {
-    this.setData({ main_type_id: e.detail.value, sub_type_id: 0 })
-    var objectArray = this.data.objectArray
-    this.setData({ object: objectArray[this.data.main_type_id].array })
-  },
-  bindPickerChange1: function (e) {
+  bindFinDateChange: function (e) {
     this.setData({
-      sub_type_id: e.detail.value
+      fin_date: e.detail.value
     })
-  },  
+  },
+
+
+
 
 
 /**

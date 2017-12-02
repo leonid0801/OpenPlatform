@@ -1,7 +1,29 @@
 //app.js
 App({
   globalData: {
-    userInfo: null
+    userInfo: null,
+    typeObjectArray: [
+      {
+        main_type: "旅游",
+        id: 0,
+        array: ["周边游", "国内游", "境外游", "自驾游", "穿越", "其它"]
+      },
+      {
+        main_type: "活动",
+        id: 1,
+        array: ["婚恋服务", "单身交友", "游泳", "K歌", "桌游", "聚餐", "其它"]
+      },
+      {
+        main_type: "户外",
+        id: 2,
+        array: ["爬山", "撕名牌", "景点参观", "钓鱼", "其它"]
+      },
+      {
+        main_type: "摄影",
+        id: 3,
+        array: ["自然风景", "人像写真", "其它"]
+      }
+    ],
   },
   onLaunch: function () {
     // 展示本地存储能力

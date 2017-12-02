@@ -41,7 +41,7 @@ page {
 	margin: 10px 0;
 	padding: 10px;
 	color: #616161;
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 150%;
 }
 

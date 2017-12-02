@@ -5,11 +5,11 @@
   <image src="../../images/tabBar/back.png"
     style="width:100rpx;height:100rpx" bindtap="backTo">
   </image> 
-  <view class="weui-cells__title" >活动类型：{{item.f_main_type_id}}-{{item.f_sub_type_id}}        </view>
+  <view class="weui-cells__title" >活动类型：{{mainTypeName}}-{{subTypeName}}        </view>
   <view class="weui-cells weui-cells_after-title"></view>
     <view class="weui-cells__title" >开始日期：{{item.f_start_date}}</view>
   <view class="weui-cells weui-cells_after-title"></view>
-    <view class="weui-cells__title" >结束日期：</view>
+    <view class="weui-cells__title" >结束日期：{{item.f_finish_date}}</view>
   <view class="weui-cells weui-cells_after-title"></view>
 
   <view class="weui-cells__title">发布时间：{{item.f_created}}</view>

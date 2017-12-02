@@ -1,6 +1,6 @@
 
-
-
+var appInstance = getApp();
+var globalData = appInstance.globalData;
 Page({
   data: {
     f_id: 0,
@@ -22,13 +22,22 @@ Page({
       header: { 'content-type': 'application/json' },
       success: function (res) {
         if (res.data.code == 0) {
+          
+          
           var item_data = res.data.data;
+          var mainTypeName = globalData.typeObjectArray[item_data.f_main_type_id].main_type;
+          
+          var subTypeName = globalData.typeObjectArray[item_data.f_main_type_id].array[item_data.f_sub_type_id];
+
+          console.log(subTypeName)
           var f_textarea = res.data.data.f_textarea;
           var can_modify = res.data.data.can_modify;
           that.setData({
             f_id: item_id,
             textarea: f_textarea,
             item:item_data,
+            mainTypeName: mainTypeName,
+            subTypeName: subTypeName,
             hideDel: !can_modify
           })
         }
@@ -65,6 +74,7 @@ Page({
           })
 
           setTimeout(function () {
+            wx.hideToast()
             wx.switchTab({
               url: '../index/index',
               success: function (e) {
