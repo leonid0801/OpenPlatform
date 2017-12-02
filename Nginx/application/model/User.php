@@ -208,6 +208,38 @@ class User extends LogicBase {
         return $ret;
     }
 
+    public function getUserItems($get_info){
+        $ret = array();
+        if (!array_key_exists('page', $get_info) or !array_key_exists('page_size', $get_info) or !array_key_exists('client_session', $get_info)){
+            $ret["code"]=1;
+            $ret["msg"]="failed";
+            $ret["data"]="";
+            return $ret;
+        }
+
+
+        $page_index = (int)$get_info["page"];
+        $page_size = (int)$get_info["page_size"];
+        $client_session = $get_info["client_session"];
+
+        $db_res = $this->userModel->getUidByClientSess($client_session);
+        if (sizeof($db_res) < 1){
+            $ret["code"]=1;
+            $ret["msg"]="failed";
+            $ret["data"]="";
+            return $ret;
+        }
+        $f_uid = $db_res[0]["f_uid"];
+        $results = $this->itemModel->getMoreItemList("f_uid='$f_uid'", $page_index*$page_size, $page_size);
+
+
+        $ret["code"]=0;
+        $ret["msg"]="success";
+        $ret["data"]=$results;
+        return $ret;
+
+    }
+
     public function getBottomData($get_info){
 
         $ret = array();
@@ -233,6 +265,61 @@ class User extends LogicBase {
         $ret["msg"]="success";
         $ret["data"]=$ext_res;
         return $ret;
+
+    }
+
+
+    public function delItem($get_info){
+        $ret = array();
+        if (!array_key_exists('f_id', $get_info) or !array_key_exists('client_session', $get_info)){
+            $ret["code"]=1;
+            $ret["msg"]="params fault";
+            $ret["data"]="";
+            return $ret;
+        }
+
+        // get user id
+        $client_session = $get_info["client_session"];
+        $db_res = $this->userModel->getUidByClientSess($client_session);
+        if (sizeof($db_res) < 1){
+            $ret["code"]=1;
+            $ret["msg"]="failed";
+            $ret["data"]="";
+            return $ret;
+        }
+        $f_uid = $db_res[0]["f_uid"];
+
+        // get user id with item id
+        $f_id = $get_info["f_id"];
+        $db_item = $this->itemModel->getItemByFid($f_id);
+        if (sizeof($db_item) < 1){
+            $ret["code"]=1;
+            $ret["msg"]="db error";
+            $ret["data"]="";
+            return $ret;
+        }
+        $db_f_uid = $db_item[0]["f_uid"];
+
+        // user check
+        if ($f_uid != $db_f_uid){
+            $ret["code"]=1;
+            $ret["msg"]="user check faied";
+            $ret["data"]="";
+            return $ret;
+        }
+
+        $res = $this->itemModel->del("f_id='$f_id'");
+        if($res){
+            $ret["code"]=0;
+            $ret["msg"]="success";
+            $ret["data"]="";
+            return $ret;
+        }
+
+
+
+
+
 
     }
 

@@ -5,12 +5,13 @@
     <ignored path="Nginx.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/db.sql" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511571262530" ignored="false" />
-    <file path="/UserModel.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511620675465" ignored="false" />
+    <file path="/UserModel.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1512175793813" ignored="false" />
     <file path="/DBModel.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511627662457" ignored="false" />
-    <file path="/Wxapp.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511743576198" ignored="false" />
-    <file path="/User.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511796101922" ignored="false" />
+    <file path="/Wxapp.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1512181074925" ignored="false" />
+    <file path="/User.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1512183501179" ignored="false" />
     <file path="/Logs.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511700078509" ignored="false" />
     <file path="/LogicBase.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511701322509" ignored="false" />
+    <file path="/ItemModel.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1512182525963" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,35 +34,65 @@
       <file leaf-file-name="DBModel.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/model/DBModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="0" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0">
+            <state line="448" column="47" selection-start="10012" selection-end="10012" vertical-scroll-proportion="-0.8679245">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageModel.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/model/ImageModel.php">
+      <file leaf-file-name="ItemModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/model/ItemModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="34" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
+            <state line="44" column="32" selection-start="955" selection-end="967" vertical-scroll-proportion="-6.535714">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="User.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/model/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="233" column="30" selection-start="7538" selection-end="7538" vertical-scroll-proportion="0.77079105">
+            <state line="310" column="34" selection-start="9770" selection-end="9770" vertical-scroll-proportion="-4.5283017">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Wxapp.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="UserModel.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/model/UserModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="57" column="38" selection-start="1425" selection-end="1443" vertical-scroll-proportion="-9.571428">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.sql" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/db.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="6" selection-start="673" selection-end="678" vertical-scroll-proportion="5.9">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Wxapp.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controller/Api/Wxapp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="9" selection-start="4506" selection-end="4506" vertical-scroll-proportion="0.0">
+            <state line="40" column="29" selection-start="1056" selection-end="1064" vertical-scroll-proportion="0.3241107">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Wx.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controller/Api/Wx.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="18.321428">
+              <folding>
+                <marker date="1489329525000" expanded="true" signature="2445:2704" placeholder="..." />
+                <marker date="1489329525000" expanded="true" signature="4760:5017" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,28 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="47" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LogicBase.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/model/LogicBase.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="34" selection-start="995" selection-end="995" vertical-scroll-proportion="0.0">
+            <state line="41" column="34" selection-start="995" selection-end="995" vertical-scroll-proportion="-5.178571">
               <folding />
             </state>
           </provider>
@@ -106,15 +119,6 @@
         <entry file="file://$PROJECT_DIR$/application/Application.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Logs.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Logs.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -131,13 +135,14 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/scripts/db.sql" />
-        <option value="$PROJECT_DIR$/application/model/UserModel.php" />
         <option value="$PROJECT_DIR$/application/model/DBModel.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/application/Logs.php" />
-        <option value="$PROJECT_DIR$/application/controller/Api/Wxapp.php" />
         <option value="$PROJECT_DIR$/application/model/LogicBase.php" />
+        <option value="$PROJECT_DIR$/application/model/UserModel.php" />
+        <option value="$PROJECT_DIR$/application/model/ItemModel.php" />
         <option value="$PROJECT_DIR$/application/model/User.php" />
+        <option value="$PROJECT_DIR$/application/controller/Api/Wxapp.php" />
       </list>
     </option>
   </component>
@@ -271,6 +276,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nginx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nginx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -302,14 +329,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26818183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27272728" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -383,20 +410,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/db.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="13" selection-start="1812" selection-end="1824" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/json.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="9" selection-start="2485" selection-end="2485" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/model/WxAppModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="5" selection-start="553" selection-end="553" vertical-scroll-proportion="-0.6785714" />
@@ -405,16 +422,6 @@
     <entry file="file://$PROJECT_DIR$/application/model/WxUserModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/model/ItemModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="28" selection-start="1121" selection-end="1127" vertical-scroll-proportion="-33.92857" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/model/UserModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="28" selection-start="1750" selection-end="1756" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/model/ImageModel.php">
@@ -452,13 +459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controller/Api/Wxapp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="9" selection-start="4506" selection-end="4506" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Application.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -466,23 +466,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/model/DBModel.php">
+    <entry file="file://$PROJECT_DIR$/application/model/LogicBase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="0" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0">
+        <state line="41" column="34" selection-start="995" selection-end="995" vertical-scroll-proportion="-5.178571">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/model/LogicBase.php">
+    <entry file="file://$PROJECT_DIR$/scripts/db.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="34" selection-start="995" selection-end="995" vertical-scroll-proportion="0.0">
+        <state line="17" column="6" selection-start="673" selection-end="678" vertical-scroll-proportion="5.9">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/model/UserModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="38" selection-start="1425" selection-end="1443" vertical-scroll-proportion="-9.571428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controller/Api/Wx.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="18.321428">
+          <folding>
+            <marker date="1489329525000" expanded="true" signature="2445:2704" placeholder="..." />
+            <marker date="1489329525000" expanded="true" signature="4760:5017" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/model/DBModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="448" column="47" selection-start="10012" selection-end="10012" vertical-scroll-proportion="-0.8679245">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/model/ItemModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="32" selection-start="955" selection-end="967" vertical-scroll-proportion="-6.535714">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/model/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="233" column="30" selection-start="7538" selection-end="7538" vertical-scroll-proportion="0.77079105">
+        <state line="310" column="34" selection-start="9770" selection-end="9770" vertical-scroll-proportion="-4.5283017">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controller/Api/Wxapp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="29" selection-start="1056" selection-end="1064" vertical-scroll-proportion="0.3241107">
           <folding />
         </state>
       </provider>

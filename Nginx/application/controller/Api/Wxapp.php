@@ -147,6 +147,11 @@ class Api_Wxapp extends BaseController{
         echo json_encode($ret);
     }
 
+    public function get_user_items(){
+        $ret = $this->user->getUserItems($_GET);
+        echo json_encode($ret);
+    }
+
     public function get_bottom_data(){
         $ret = $this->user->getBottomData($_GET);
         echo json_encode($ret);
@@ -157,6 +162,10 @@ class Api_Wxapp extends BaseController{
         echo $json_ret;
     }
 
+    public function del_item(){
+        $ret = $this->user->delItem($_GET);
+        echo json_encode($ret);
+    }
 
 
 }

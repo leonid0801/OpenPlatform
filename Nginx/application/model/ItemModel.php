@@ -46,6 +46,10 @@ class ItemModel extends DBModel {
         return $this->select(parent::ALL_FIELD, "f_id='{$item_id}'");
     }
 
+    public function del($where){
+        return $this->delete($where);
+    }
+
 	//设置为已读
 	public function setRead($info,$where){
 		return $this->update($info,$where);

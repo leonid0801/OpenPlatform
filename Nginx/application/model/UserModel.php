@@ -55,6 +55,10 @@ class UserModel extends DBModel {
         return $this->select(parent::ALL_FIELD, "f_id='{$item_id}'");
     }
 
+    public function getUidByClientSess($sess){
+        return $this->select(parent::ALL_FIELD, "f_client_session='{$sess}'");
+    }
+
 
     public function getUserInfo($arr_uid){
         $nfields = implode ( ", ",  $arr_uid);
