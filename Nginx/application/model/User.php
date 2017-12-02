@@ -126,6 +126,14 @@ class User extends LogicBase {
         return json_encode($ret);
     }
 
+    private  function get_front_text($text, $length = 60){
+        if (strlen($text) < 60){
+            return $text;
+        }else{
+            return mb_substr($text,0,60,"UTF8")."…";
+        }
+    }
+
     private  function  extract($arr_item, $arr_user){
 
         $arr_ret = Array();
@@ -138,7 +146,7 @@ class User extends LogicBase {
         foreach ($arr_item as $key => $value){
             $arr_ret[$key]['f_id'] = $value['f_id'];
             $arr_ret[$key]['f_uid'] = $value['f_uid'];
-            $arr_ret[$key]['f_textarea'] = $value['f_textarea'];
+            $arr_ret[$key]['f_textarea'] = $this->get_front_text($value['f_textarea']);
             $arr_ret[$key]['f_created'] = $value['f_created'];
             $arr_ret[$key]['f_nickname'] = $user_info[$value['f_uid']]['f_nickname'];
             $arr_ret[$key]['f_avatar_url'] = $user_info[$value['f_uid']]['f_avatar_url'];
@@ -208,6 +216,16 @@ class User extends LogicBase {
         return $ret;
     }
 
+    public function items_filter($result){
+        $arr_ret = Array();
+        foreach ($result as $key => $value){
+            $arr_ret[$key]["f_id"] = $value["f_id"];
+            $arr_ret[$key]['f_textarea'] = $this->get_front_text($value['f_textarea']);
+        }
+        return $arr_ret;
+
+    }
+
     public function getUserItems($get_info){
         $ret = array();
         if (!array_key_exists('page', $get_info) or !array_key_exists('page_size', $get_info) or !array_key_exists('client_session', $get_info)){
@@ -232,10 +250,10 @@ class User extends LogicBase {
         $f_uid = $db_res[0]["f_uid"];
         $results = $this->itemModel->getMoreItemList("f_uid='$f_uid'", $page_index*$page_size, $page_size);
 
-
+        $filter_ret = $this->items_filter($results);
         $ret["code"]=0;
         $ret["msg"]="success";
-        $ret["data"]=$results;
+        $ret["data"]=$filter_ret;
         return $ret;
 
     }

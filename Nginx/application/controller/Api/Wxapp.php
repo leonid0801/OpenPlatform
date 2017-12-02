@@ -51,6 +51,7 @@ class Api_Wxapp extends BaseController{
             && array_key_exists('main_type_id', $_POST)
             && array_key_exists('sub_type_id', $_POST)
             && array_key_exists('date', $_POST)
+            && array_key_exists('fin_date', $_POST)
             && array_key_exists('latitude', $_POST)
             && array_key_exists('longitude', $_POST)
         ){
@@ -60,6 +61,7 @@ class Api_Wxapp extends BaseController{
                 'f_main_type_id' => $_POST['main_type_id'],
                 'f_sub_type_id' => $_POST['sub_type_id'],
                 'f_start_date' => $_POST['date'],
+                'f_finish_date' => $_POST['fin_date'],
                 'f_latitude' => $_POST['latitude'],
                 'f_longitude' => $_POST['longitude'],
                 'f_created' => date("Y-m-d H:i:s",time() ),
