@@ -106,7 +106,8 @@
     <view class="page-body">
     <view class="page-section">
       <view class="textarea-wrp">
-        <textarea bindblur="textChange" name="textarea" placeholder="" style="height: 20em" />
+        <textarea bindblur="textChange" name="textarea" 
+        placeholder="" maxlength="500" style="height: 20em" />
       </view>
     </view>
     </view>

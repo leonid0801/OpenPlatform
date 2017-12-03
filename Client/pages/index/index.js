@@ -215,9 +215,13 @@ getMoreData: function () {
           })
 
       } else {
+        var curTitle='';
+        if (res.data.code=1){
+          curTitle='No more'
+        }
 
         wx.showToast({
-          title: "返回码："+res.data.code,
+          title: curTitle,
           icon: 'loading',
           duration: 10000
         })
