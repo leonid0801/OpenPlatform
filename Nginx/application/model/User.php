@@ -127,10 +127,10 @@ class User extends LogicBase {
     }
 
     private  function get_front_text($text, $length = 60){
-        if (strlen($text) < 60){
+        if (mb_strlen($text, 'UTF8') < 60){
             return $text;
         }else{
-            return mb_substr($text,0,60,"UTF8")."…";
+            return mb_substr($text,0,60,'UTF8').'…';
         }
     }
 
