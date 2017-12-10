@@ -1,0 +1,260 @@
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!--用户缩放页面，或者在屏幕双击放大或缩小-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<title>Demo</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="items">
+		</div>
+		<p class="tips loading">加载中...</p>
+	</div>
+	<!-- 引入库 -->
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/template-native.js"></script>
+	<script src="./js/jquery.waterFall.js"></script>
+	<script src="./js/nav4.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/main.css" media="all">
+	<link rel="stylesheet" type="text/css" href="./css/menu.css" media="all">
+	
+	<script>
+
+		// 装请求数据的任务封装一个函数
+		// 目的是可以重复调用
+		function getData(page) {
+			$.ajax({
+				type: 'post',
+				url: 'data.php',
+				data: {page: page},
+				beforeSend: function () {
+					// 设置Loading状态
+					$('.tips').addClass('loading').text('加载中...');
+				},
+				success: function (info) {
+					console.log(info);
+
+					// for(var i=0; i<info.items.length; i++) {
+
+					// }
+
+					// 调用模板引擎
+					var html = template('tpl', info);
+					console.log(html);
+
+					// 添加元素
+					$('.items').append(html);
+					
+					// 瀑布流插件
+					$('.items').waterFall();
+
+					// 缓存服务返回的页码
+					// 这个页码是告诉我们下一页该是哪一页了
+					$('.tips').attr('data-page', info.page);
+				},
+				complete: function () {
+					// 还原按扭状态
+					$('.tips').removeClass('loading').text('加载更多');
+				}
+			});
+		}
+
+		// 首次数据加载
+		getData(1);
+	
+		// 点击获取下一页
+		$('.tips').on('click', function () {
+			// 禁止重复提交
+			if($(this).hasClass('loading')) {
+				return;
+			}
+
+			// 获取下一页的页码
+			var page = $(this).attr('data-page');
+			// 获取下一页数据
+			getData(page);
+		});
+
+		// 
+		$(window).on('scroll', function () {
+			var win = $(this),
+				// 容器元素
+				items = $('.items'),
+				// 窗口高度
+				winHeight = win.height(),
+				// 滚动高度
+				scrollTop = win.scrollTop(),
+				// 容器距离html顶部的高度
+				offsetTop = items.offset().top,
+				// 容器高度
+				height = items.height();
+
+			// 计算滚动位置
+			var offset = height + offsetTop - winHeight - scrollTop;
+
+			console.log(offset);
+
+			// 提前200px去加载数据，并禁止重复请求
+			if(offset < 200 && !$('.tips').hasClass('loading')) {
+				// 获取下一页页码
+				var page = $('.tips').attr('data-page');
+				// 请求新数据
+				getData(page);
+			}
+
+		});
+	</script>
+	<!-- 抽离模板 -->
+	<script type="text/template" id="tpl">
+		<% for(var i=0; i<items.length; i++) { %>
+			<div class="item">
+				<!-- <img src="<%= items[i].path %>" alt=""> -->
+				<div class="text">
+				<p><%= items[i].text %></p>
+				</div>
+			</div>
+		<% } %>
+	</script>
+	
+	<script>
+	window.onload = function(){ 
+		$('#menu ul li').each(function(j){ 
+			$('#menu ul li').eq(j).removeClass("on"); 
+			$('#menu ul li span').eq(j).animate({bottom:-$('#menu ul li span').eq(j).height()},100); 
+		}); 
+	} 
+	$('#menu ul li').each(function(i){ 
+		$(this).click(function(){ 
+			if($(this).attr("class")!="on"){ 
+				$('#menu ul .on span').animate({bottom:-$('#menu ul .on span').height()},200); 
+				$('#menu ul .on').removeClass("on"); 
+				$(this).addClass("on"); 
+				$('#menu ul li span').eq(i).animate({bottom:20},200); 
+				$('.footer_front').show(); 
+			}else{ 
+				$('#menu ul li span').eq(i).animate({bottom:-$('#menu ul li span').eq(i).height()},200); 
+				$(this).removeClass("on"); 
+				$('.footer_front').hide(); 
+			} 
+		}); 
+	}); 
+	$('.footer_front').click(function(){ 
+		$('#menu ul .on span').animate({bottom:-$('#menu ul .on span').height()},200); 
+		$('#menu ul .on').removeClass("on"); 
+		$(this).hide(); 
+	});
+	</script>
+<div id="menu" style="position:fixed;bottom:0px;width:100%;height:44px;line-height:44px;z-index:999;background:url(images/menubg.png) repeat-x;">
+
+	<ul style="margin:0 auto;list-style-type:none;width:100%;max-width:500px;height:100%;">
+		<li><img class="img_front" src="images/front.png"><div class="menu_li"><img src="images/coin.png" width=10>&nbsp;首页</div><img class="line" src="images/line.png" width=1>
+		<span style="background-size:100%;">
+		</span>
+		</li>
+		<li><img class="img_front" src="images/front.png"><div class="menu_li"><img src="images/coin.png" width=10>&nbsp;发布</div><img class="line" src="images/line.png" width=1>
+		<span style="background-size:100%;">
+		</span>
+		</li>
+		<li><img class="img_front" src="images/front.png"><div class="menu_li"><img src="images/coin.png" width=10>&nbsp;我的</div>
+		<span style="background-size:100%;">
+			<img src="images/navbg2.png" width=100%>
+			<div style="position:absolute;top:0px;left:0px;">
+			<a href="http://www.lanrenmb.com">咨询购买</a>
+			<a href="http://www.lanrenmb.com">咨询购买</a>
+			</div>
+		</span>
+		</li>
+	</ul>
+</div>
+
+<div class="footer_front" style="position:fixed;width:100%;height:100%;top:0px;left:0px;z-index:888;display:none;"><img src="images/front.png" width="100%" height="100%"></div>
+
+<style>
+
+#menu ul li{float:left;width:33.3%;height:100%;text-align:center;position:relative;font-size:14px;}
+
+#menu ul li .line{position:absolute;top:0px;right:0px;z-index:30;}
+
+#menu ul li .menu_li{position:absolute;top:0px;left:0px;z-index:20;width:100%;height:100%;color:#454545;background:url(images/menubg.png) repeat-x;}
+
+#menu ul li .img_front{position:absolute;top:0px;left:0px;z-index:30;width:100%;height:100%;}
+
+#menu ul li .img_front img{width:100%;height:100%;}
+
+#menu ul li span{position:absolute;bottom:-300px;left:50%;width:104px;margin-left:-52px;height:auto;text-align:center;z-index:10;}
+
+#menu ul li span a{float:left;width:100%;height:43px;line-height:43px;color:#454545;text-decoration:none;}
+
+</style>
+
+<script>
+
+function beginTalk() {
+
+	var t = window.location.toString();
+	var newT = t.replace(new RegExp("&", "gm"), "<and>"); 
+	window.open("../italk/index_m.jsp@fs_AccessAddress=" + newT, "talk");
+
+}
+
+window.onload = function(){
+
+	$('#menu ul li').each(function(j){
+
+		$('#menu ul li').eq(j).removeClass("on");
+
+		$('#menu ul li span').eq(j).animate({bottom:-$('#menu ul li span').eq(j).height()},100);
+
+	});
+
+}
+
+$('#menu ul li').each(function(i){
+
+	$(this).click(function(){
+
+		if($(this).attr("class")!="on"){
+
+			$('#menu ul .on span').animate({bottom:-$('#menu ul .on span').height()},200);
+
+			$('#menu ul .on').removeClass("on");
+
+			$(this).addClass("on");
+			console.log("i:",i);
+			
+			$('#menu ul li span').eq(i).animate({bottom:50},200);
+			$('.footer_front').show();
+
+
+		}else{
+
+			$('#menu ul li span').eq(i).animate({bottom:-$('#menu ul li span').eq(i).height()},200);
+
+			$(this).removeClass("on");
+
+			$('.footer_front').hide();
+
+		}
+
+	});
+
+});
+
+$('.footer_front').click(function(){
+
+	$('#menu ul .on span').animate({bottom:-$('#menu ul .on span').height()},200);
+
+	$('#menu ul .on').removeClass("on");
+
+	$(this).hide();
+
+});
+
+</script>
+
+</div>
+
+</body>
+</html>
