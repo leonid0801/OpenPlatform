@@ -41,7 +41,7 @@ class BaseController {
 		
 		
 		//设置静态资源的版本号
-        $view->static_version=STATIC_VERSION;
+        //$view->static_version=STATIC_VERSION;
 		return $view;
 	}
 	
