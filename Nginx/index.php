@@ -19,6 +19,7 @@ include_once(APP_PATH."/application/model/WxAppModel.php");
 include_once(APP_PATH."/application/model/ItemModel.php");
 include_once(APP_PATH."/application/model/UserModel.php");
 include_once(APP_PATH."/application/model/User.php");
+include_once(APP_PATH."/application/model/Item.php");
 
 #include_once(APP_PATH."/application/model/ImageModel.php");
 
