@@ -1,0 +1,157 @@
+<!DOCTYPE>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<title>Demo</title>
+	<link  rel="stylesheet" type="text/css" href="/application/view/templates/bootstrap-3.0.3/css/bootstrap.min.css">
+	<script src="/application/view/templates/jquery/2.1.1/jquery.min.js"></script>
+	<script src="/application/view/templates/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <ul class="list-group">
+        <!--
+        <a class="list-group-item">
+            <h4 class="list-group-item-heading">列表1标题</h4>
+            <p class="list-group-item-text">列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容</p>
+        </a>
+        <a class="list-group-item">
+            <h4 class="list-group-item-heading">列表2标题</h4>
+            <p class="list-group-item-text">列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容</p>
+        </a>
+        <a class="list-group-item disabled">
+            <h4 class="list-group-item-heading">列表3标题</h4>
+            <p class="list-group-item-text">列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容</p>
+        </a>
+        <a class="list-group-item">
+            <h4 class="list-group-item-heading">列表4标题</h4>
+            <p class="list-group-item-text">列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容</p>
+        </a>
+        <a class="list-group-item">
+            <h4 class="list-group-item-heading">列表5标题</h4>
+            <p class="list-group-item-text">列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容</p>
+        </a>
+        <a class="list-group-item">
+            <h4 class="list-group-item-heading">列表6标题</h4>
+            <p class="list-group-item-text">列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容</p>
+        </a>
+        <template id="productrow">
+            <a class="list-group-item">
+                <h4 class="list-group-item-heading"></h4>
+                <p class="list-group-item-text"></p>
+            </a>
+        </template>
+        -->
+    </ul>
+    <script>
+        console.log(location.pathname);
+
+        var pageItemCount = 10;
+        let [pageIndex] = [0];
+
+        //初始化页面数据
+        if (document.body.scrollHeight === window.innerHeight) {
+            console.log(document.body.scrollHeight, window.innerHeight);
+            askData();
+        }
+
+        //滚动加载
+        window.onscroll = function () {
+            console.log(document.body.scrollTop,document.body.clientHeight, window.innerHeight,document.body.scrollHeight);
+            if(document.body.scrollTop + document.body.clientHeight == document.body.scrollHeight){
+                askData();
+            }
+
+            /*var height = document.body.scrollHeight - document.body.scrollTop - window.innerHeight
+             if (height < 200 ) {
+             askData();
+             console.log(height);
+             }*/
+        }
+
+        //异步请求数据
+        function askData() {
+            $.ajax({
+                type:"get",
+                url: 'https://bjwob.top/index.php/api/wxapp/get_bottom_data',
+                data: {
+                    page: pageIndex,
+                    page_size: pageItemCount
+                },
+                success: function (res) {
+                    console.log(res)
+                    var obj = eval("("+res+")");
+                    if (obj.code==0){
+                        loadDOM(obj.data);
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+        }
+
+        //加载数据到页面
+        function loadDOM (data) {
+            for (let i in data) {
+                console.log(data[i].f_textarea)
+
+                var content = data[i].f_textarea
+                var headUrl = data[i].f_avatar_url
+                var itemId = data[i].f_id
+                let html =
+                        '<a class="list-group-item" onclick="detail('+itemId+')"><p class="list-group-item-text">'
+                                +content
+                                +'</p>'
+                                +'<figure >'
+                                +'<img class="img-circle" src='+headUrl+' width="35" height="35">'
+                                +'</figure>'
+                                +'</a>'
+
+                //'<h4 class="list-group-item-heading">${data[i].title}</h4>' +
+                console.log(html)
+                $(html).appendTo('.list-group')
+            }
+            pageIndex++
+        }
+
+        function detail(itemId) {
+            console.log(itemId)
+            window.location.href="https://bjwob.top/index.php/api/wxapp/get_item_detail?f_id="+itemId;
+        }
+
+        $("a").click(function(res){
+            //要执行的代码写在这里
+            console.log(res)
+        });
+
+
+
+        /*
+         // 通过检查来测试浏览器是否支持HTML模板元素
+         // 用于保存模板元素的内容属性。
+         if ('content' in document.createElement('template')) {
+
+         // 使用现有的HTML tbody实例化表和该行与模板
+         let t = document.querySelector('#productrow'),
+         h4 = t.content.querySelectorAll("h4");
+         h4[0].textContent = "1235646565";
+
+         p = t.content.querySelectorAll("p");
+         p[0].textContent = "列表7内容列表7内容";
+
+         // 克隆新行并将其插入表中
+         let tb = document.getElementsByTagName("ul");
+         let clone = document.importNode(t.content, true);
+         tb[0].appendChild(clone);
+
+         } else {
+         // 找到另一种方法来添加行到表，因为不支持HTML模板元素。
+         }
+         */
+
+
+    </script>
+</body>
+
