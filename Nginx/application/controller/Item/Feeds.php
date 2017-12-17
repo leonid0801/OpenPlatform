@@ -17,4 +17,11 @@ class Item_Feeds extends BaseController{
         $view->assign('ret',$ret);
         $view->render('node')   ;
     }
+
+    public function login(){
+
+        $view = $this->_getView();
+
+        $view->render('login')   ;
+    }
 }
