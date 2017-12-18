@@ -10,12 +10,11 @@
 class User extends LogicBase {
 
     public function _init() {
-        //$this->wxAppModel = new wxAppModel("t_client");
         $this->itemModel = new itemModel("t_item");
         $this->userModel = new userModel("t_user");
 
-        $this->logs->msg("AAAA", __FILE__, __LINE__);
-        $this->logs->debug("YRT", __FILE__, __LINE__);
+        //$this->logs->msg("AAAA", __FILE__, __LINE__);
+        //$this->logs->debug("YRT", __FILE__, __LINE__);
     }
 
     /**
@@ -333,11 +332,15 @@ class User extends LogicBase {
             $ret["data"]="";
             return $ret;
         }
+    }
 
-
-
-
-
+    public function login($get_info){
+        $this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
+        if (!array_key_exists('username', $get_info) or !array_key_exists('password', $get_info)){
+            return False;
+        }else{
+            return True;
+        }
 
     }
 

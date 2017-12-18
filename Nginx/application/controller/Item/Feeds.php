@@ -3,6 +3,7 @@
 class Item_Feeds extends BaseController{
     public function _init() {
         $this->item = new Item();
+        $this->user = new User();
     }
 
     public function index(){
@@ -22,6 +23,11 @@ class Item_Feeds extends BaseController{
 
         $view = $this->_getView();
 
-        $view->render('login')   ;
+        if ($this->user->login($_GET)){
+            $view->render('index')   ;
+        }else{
+            //$view->render('index')   ;
+            $view->render('login')   ;
+        }
     }
 }

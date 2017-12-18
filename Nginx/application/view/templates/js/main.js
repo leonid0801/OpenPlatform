@@ -5,14 +5,14 @@ $().ready(function() {
 			password: {
 				required: true,
 				minlength: 5
-			},
+			}
 		},
 		messages: {
-			username: "请输入姓名",
+			username: "请输入手机号",
 			password: {
 				required: "请输入密码",
 				minlength: jQuery.format("密码不能小于{0}个字 符")
-			},
+			}
 		}
 	});
 	$("#register_form").validate({
@@ -31,7 +31,7 @@ $().ready(function() {
 			}
 		},
 		messages: {
-			username: "请输入姓名",
+			username: "请输入手机号",
 			password: {
 				required: "请输入密码",
 				minlength: jQuery.format("密码不能小于{0}个字 符")
@@ -55,4 +55,5 @@ $(function() {
 		$("#register_form").css("display", "none");
 		$("#login_form").css("display", "block");
 	});
+
 });
