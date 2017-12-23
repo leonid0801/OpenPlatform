@@ -334,12 +334,43 @@ class User extends LogicBase {
         }
     }
 
+    private  function slat_added($password) {
+        $slat = "YdN8";
+        return ( $password . $slat);
+    }
+
     public function login($get_info){
         $this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
         if (!array_key_exists('username', $get_info) or !array_key_exists('password', $get_info)){
             return False;
         }else{
-            return True;
+            //session_start();
+            $user=$get_info['username'];
+            $password=$get_info['password'];
+            if (array_key_exists('remember', $get_info)){
+                $remember=$get_info['remember'];
+                if ($remember=='on'){
+                    //var_dump(session_id());
+                    //$sessionpath = session_save_path();
+                    //echo $sessionpath;
+
+                    $password=$this->slat_added($password);
+                    $_SESSION['usermob']=$user;
+                    setcookie("username",$user,time()+3600*3600*24);
+                    setcookie("password",$password,time()+3600*3600*24);
+                    //var_dump($_COOKIE);
+                    //var_dump($_SESSION);
+                }
+                return True;
+            }else{
+                $this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
+
+                setcookie("username",$user,time()-1);
+                setcookie("password",$password,time()-1);
+                return False;
+
+            }
+
         }
 
     }

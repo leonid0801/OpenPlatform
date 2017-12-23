@@ -21,12 +21,17 @@ class Item_Feeds extends BaseController{
 
     public function login(){
 
+
+        //$this->logs->msg(json_encode($_SESSION), __FILE__, __LINE__);
+
         $view = $this->_getView();
 
-        if ($this->user->login($_GET)){
+        $ret = $this->user->login($_POST);
+        var_dump($_POST);
+        if ($ret){
             $view->render('index')   ;
         }else{
-            //$view->render('index')   ;
+            $view->assign('ret',$ret);
             $view->render('login')   ;
         }
     }

@@ -32,7 +32,7 @@
   你上传的图片(图片有效期为1分钟)：
 </div>
 
-<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/application/view/templates/inc/js/jquery-2.1.1.min.js"></script>
 <script>
   var filechooser = document.getElementById("choose");
 
@@ -191,7 +191,7 @@
 
     formdata.append('imagefile', blob);
 
-    xhr.open('post', '/index.php/file/imageUpload/test');
+    xhr.open('post', '/index.php/file/image/save');
 
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {

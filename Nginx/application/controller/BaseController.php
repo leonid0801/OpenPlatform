@@ -13,6 +13,7 @@ class BaseController {
 		 * 增加鉴权模块  @todo
 		 */
 		$this->_init ();
+        $this->logs = LOGS::getInstance();
 	}
 	
 	/**
