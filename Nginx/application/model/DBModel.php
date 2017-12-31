@@ -82,6 +82,7 @@ class DBModel {
 	public function __construct($table, $db_config_name ) {
 		$this->_table = $table;
 		//$this->_logger = Logger::getLogger ( 'db' );
+        $this->_logger=LOGS::getInstance();
 		if (empty ( $this->_table )) {
 			$this->table ( ucfirst ( substr ( get_class ( $this ), 0, - 7 ) ) );
 		}
@@ -317,8 +318,8 @@ class DBModel {
 			
 			return $res;
 		} catch ( Exception $e ) {
-			$this->_logger->error ( $e->getMessage () );
-			$this->_logger->error ( "BAD SQL:{$sql}" );
+			$this->_logger->err( $e->getMessage (),__FILE__, __LINE__) ;
+			$this->_logger->err( "BAD SQL:{$sql}",__FILE__, __LINE__ );
 			return false;
 		}
 	}

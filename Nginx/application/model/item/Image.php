@@ -10,6 +10,7 @@
 class Image {
 
     public function __construct( ) {
+        $this->itemNewModel = new itemNewModel("t_item_new");
         $this->logs = LOGS::getInstance();
     }
 
@@ -17,16 +18,39 @@ class Image {
 
     }
 
-    public function imageSave(){
+    public function getImageName($imageInfo) {
+        if (!array_key_exists('tmp_name', $imageInfo)or!array_key_exists('tmp_name', $imageInfo)){
+            return false;
+        }
+        $imageFile = $imageInfo['tmp_name'];
+        $imageTypeInfo = explode('/',$imageInfo['type'])[1];
 
-        $name = md5_file($_FILES['imagefile']['tmp_name']);
+        $this->logs->msg($imageTypeInfo, __FILE__, __LINE__);
+
+        $imageName = md5_file($imageFile);
+        return $imageName.'.'.$imageTypeInfo;
+    }
+
+    public function getImageDir($uid) {
+        $newDir=FULL_ITEM_DIR.$uid.'/';
+        if(!is_dir($newDir)){
+            mkdir($newDir,0777,true);
+        }
+        return $newDir;
+    }
+
+    public function imageSave($localInfo){
+
+        $uid=$localInfo['uid'];
+        $imageName=$this->getImageName($_FILES['imagefile']);
+        $imageDir=$this->getImageDir($uid);
 
         $fileSize = filesize($_FILES['imagefile']['tmp_name']);
-        $uploadRes = move_uploaded_file($_FILES["imagefile"]["tmp_name"], '/usr/share/nginx/html/ugc/' . $name.'.jpg');
+        $uploadRes = move_uploaded_file($_FILES["imagefile"]["tmp_name"], $imageDir .'/'. $imageName);
         $this->logs->msg($uploadRes, __FILE__, __LINE__);
-        $this->logs->msg(json_encode($_FILES["imagefile"]), __FILE__, __LINE__);
+        //$this->logs->msg(json_encode($_FILES["imagefile"]), __FILE__, __LINE__);
 
-        $imageUrl = 'https://bjwob.top/ugc/' . $name.'.jpg';
+        $imageUrl = FULL_ITEM_DIR_DOMAIN . $uid.'/'.$imageName;
         //$ret = array('0' => array('path'=>$imageUrl));
         $ret = array();
         $ret[] = array(

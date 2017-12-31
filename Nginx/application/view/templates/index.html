@@ -1,6 +1,8 @@
 <!DOCTYPE>
 <html>
-
+<?php
+var_dump($_COOKIE);
+?>
 <head>
 
     <meta charset="UTF-8">
@@ -45,6 +47,27 @@
         </template>
         -->
     </ul>
+    <div class="main_nav_bottom">
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container" align="center">
+                <style>
+                    .nav-tabs
+                    {
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+                    }
+                </style>
+                <ul class="nav nav-tabs nav-tabs-justified">
+                    <div class="row" align="center">
+                        <div class="col-md-4 col-sm-4 col-xs-4" align="center"><li><a href="#">首页</a></li></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4" align="center"><li><a href="https://bjwob.top/index.php/file/image/upload">发布</a></li></div>
+                        <div class="col-md-4 col-sm-4 col-xs-4" align="center"><li><a href="#">我的</a></li></div>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <script>
         console.log(location.pathname);
 

@@ -1,14 +1,14 @@
 $().ready(function() {
 	$("#login_form").validate({
 		rules: {
-			username: "required",
+            usermobile: "required",
 			password: {
 				required: true,
 				minlength: 5
 			}
 		},
 		messages: {
-			username: "请输入手机号",
+            usermobile: "请输入手机号",
 			password: {
 				required: "请输入密码",
 				minlength: jQuery.format("密码不能小于{0}个字 符")
@@ -31,12 +31,14 @@ $().ready(function() {
 			}
 		},
 		messages: {
-			username: "请输入手机号",
+			username: "请输入昵称",
+            usermobile: "请输入手机号",
 			password: {
 				required: "请输入密码",
 				minlength: jQuery.format("密码不能小于{0}个字 符")
 			},
 			rpassword: {
+                required: "请再输入密码",
 				equalTo: "两次密码不一样"
 			},
 			email: {

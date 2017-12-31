@@ -13,6 +13,7 @@ class File_Image extends BaseController{
 
 
 	public function upload(){
+        $this->logs->msg(print_r($_COOKIE,1), __FILE__, __LINE__);
 
 		$view = $this->_getView();
 		//$view->assign('retcode',$retcode);
@@ -21,7 +22,8 @@ class File_Image extends BaseController{
 	}
 
     public function save(){
-        $ret=$this->image->imageSave();
+        $this->logs->msg(print_r($_COOKIE,1), __FILE__, __LINE__);
+        $ret=$this->image->imageSave($_COOKIE);
         echo urldecode($ret);
 
     }

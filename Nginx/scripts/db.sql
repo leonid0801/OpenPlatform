@@ -1,7 +1,7 @@
 
 DROP TABLE IF EXISTS `t_client`;
 CREATE TABLE `t_client` (
-`f_id`             BIGINT NOT NULL AUTO_INCREMENT,
+`f_itemid`             BIGINT NOT NULL AUTO_INCREMENT,
 `f_openid`         VARCHAR(128) NOT NULL DEFAULT '',
 `f_session_key`    VARCHAR(128) NOT NULL DEFAULT '',
 `f_expires_in`     INT NOT NULL DEFAULT '0',
@@ -14,7 +14,7 @@ PRIMARY KEY (`f_id`)
 
 DROP TABLE IF EXISTS `t_item`;
 CREATE TABLE `t_item` (
-`f_id`                    BIGINT NOT NULL AUTO_INCREMENT,
+`f_itemid`                BIGINT NOT NULL AUTO_INCREMENT,
 `f_uid`                   VARCHAR(128) NOT NULL DEFAULT '',
 `f_main_type_id`          INT NOT NULL DEFAULT '0',
 `f_sub_type_id`           INT NOT NULL DEFAULT '0',
@@ -56,3 +56,6 @@ CREATE TABLE `t_user` (
 `f_updated`                 DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 PRIMARY KEY (`f_uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+
+
+

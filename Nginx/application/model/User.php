@@ -143,7 +143,7 @@ class User extends LogicBase {
         }
 
         foreach ($arr_item as $key => $value){
-            $arr_ret[$key]['f_id'] = $value['f_id'];
+            $arr_ret[$key]['f_id'] = $value['f_itemid'];
             $arr_ret[$key]['f_uid'] = $value['f_uid'];
             $arr_ret[$key]['f_textarea'] = $this->get_front_text($value['f_textarea']);
             $arr_ret[$key]['f_created'] = $value['f_created'];
@@ -191,7 +191,7 @@ class User extends LogicBase {
         // get the newest item index
         $res_max_item_index = 0;
         if (sizeof($results)>0){
-            $res_max_item_index = $results[0]["f_id"];
+            $res_max_item_index = $results[0]["f_itemid"];
         }
 
         $ext_res = $this->joinUserInfo($results);
@@ -218,7 +218,7 @@ class User extends LogicBase {
     public function items_filter($result){
         $arr_ret = Array();
         foreach ($result as $key => $value){
-            $arr_ret[$key]["f_id"] = $value["f_id"];
+            $arr_ret[$key]["f_id"] = $value["f_itemid"];
             $arr_ret[$key]['f_textarea'] = $this->get_front_text($value['f_textarea']);
         }
         return $arr_ret;
@@ -325,54 +325,13 @@ class User extends LogicBase {
             return $ret;
         }
 
-        $res = $this->itemModel->del("f_id='$f_id'");
+        $res = $this->itemModel->del("f_itemid='$f_id'");
         if($res){
             $ret["code"]=0;
             $ret["msg"]="success";
             $ret["data"]="";
             return $ret;
         }
-    }
-
-    private  function slat_added($password) {
-        $slat = "YdN8";
-        return ( $password . $slat);
-    }
-
-    public function login($get_info){
-        $this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
-        if (!array_key_exists('username', $get_info) or !array_key_exists('password', $get_info)){
-            return False;
-        }else{
-            //session_start();
-            $user=$get_info['username'];
-            $password=$get_info['password'];
-            if (array_key_exists('remember', $get_info)){
-                $remember=$get_info['remember'];
-                if ($remember=='on'){
-                    //var_dump(session_id());
-                    //$sessionpath = session_save_path();
-                    //echo $sessionpath;
-
-                    $password=$this->slat_added($password);
-                    $_SESSION['usermob']=$user;
-                    setcookie("username",$user,time()+3600*3600*24);
-                    setcookie("password",$password,time()+3600*3600*24);
-                    //var_dump($_COOKIE);
-                    //var_dump($_SESSION);
-                }
-                return True;
-            }else{
-                $this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
-
-                setcookie("username",$user,time()-1);
-                setcookie("password",$password,time()-1);
-                return False;
-
-            }
-
-        }
-
     }
 
 

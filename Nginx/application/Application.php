@@ -5,6 +5,7 @@ class Application {
 	private $_action = null;
 	private $_classname = null;
 	public function __construct() {
+        $this->logs = LOGS::getInstance();
 		$this->_init ();
 	}
 	private function _init() {
@@ -35,9 +36,8 @@ class Application {
 	
 		///$wx = new WxController();
 		///$view = $wx->test();
-	
-		
-		
+
+        //$this->logs->debug(print_r($_SERVER,1), __FILE__, __LINE__);
 		$requestPath = preg_replace ( '/\?.*$/', '', $_SERVER ['REQUEST_URI'] );
 		//$pathArr = explode ( '/', preg_replace ( '/\/+/', '/', trim ( $requestPath, '/' ) ) );
 		$pathArr = explode ( '/', trim ( $requestPath, '/' ) );

@@ -43,7 +43,7 @@ class ItemModel extends DBModel {
     }
 
     public function getItemByFid($item_id){
-        return $this->select(parent::ALL_FIELD, "f_id='{$item_id}'");
+        return $this->select(parent::ALL_FIELD, "f_itemid='{$item_id}'");
     }
 
     public function del($where){

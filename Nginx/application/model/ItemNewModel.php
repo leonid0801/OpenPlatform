@@ -5,7 +5,7 @@
  * @ 
  *
  */
-class UserModel extends DBModel {
+class ItemNewModel extends DBModel {
 
 	/**
 	 *
@@ -24,25 +24,14 @@ class UserModel extends DBModel {
 		//$wxopenid_info["Finsert_time"] = date( "Y-m-d H:i:s",time() )  ;	
 		return $this->insert($wxopenid_info);
 	}
-
-    public function  dupKeyUpdate($arr, $where){
-        //$wxopenid_info["Finsert_time"] = date( "Y-m-d H:i:s",time() )  ;
-        return $this->duplicate_key_update($arr, $where);
-    }
-
-    public function getUserIdByClientSess($f_client_session){
-        return $this->select(parent::ALL_FIELD, "f_client_session='{$f_client_session}'");
-    }
 	
 	public function getUserByOpenid($wxopenid){
     	return $this->select(parent::ALL_FIELD, "Fopenid='{$wxopenid}'");
     }
 
-
 	public function insertInfo($params){
 		return $this->insert($params);
 	}
-
 	//获取订单
 	public function getItemList($where,$start=null,$offset=null){
 		return $this->select('*',$where,null,' f_created DESC limit 3',$start,$offset);
@@ -53,27 +42,11 @@ class UserModel extends DBModel {
     }
 
     public function getItemByFid($item_id){
-        return $this->select(parent::ALL_FIELD, "f_id='{$item_id}'");
+        return $this->select(parent::ALL_FIELD, "f_itemid='{$item_id}'");
     }
 
-    public function getUidByClientSess($sess){
-        return $this->select(parent::ALL_FIELD, "f_client_session='{$sess}'");
-    }
-
-
-    public function getUserInfo($arr_uid){
-        $nfields = implode ( ", ",  $arr_uid);
-        return $this->select(parent::ALL_FIELD, "f_uid in ({$nfields})");
-    }
-
-
-    public function setUserInfo($info,$where){
-        return $this->update($info,$where);
-    }
-
-
-    public function uptUserInfo($arr_info,$where){
-        return $this->update($arr_info,$where);
+    public function del($where){
+        return $this->delete($where);
     }
 
 	//设置为已读
@@ -89,10 +62,6 @@ class UserModel extends DBModel {
 
 		return $this->execute($sql);
 	}
-
-    public function getUserByMobile($mobile){
-        return $this->select(parent::ALL_FIELD, "f_tel_num='{$mobile}'");
-    }
 }
 
 ?>
