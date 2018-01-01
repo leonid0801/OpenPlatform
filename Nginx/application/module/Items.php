@@ -17,6 +17,7 @@ class Items{
 
     public function _init() {
         $this->itemModel = new itemNewModel("t_item_new");
+        $this->imageModel = new imageModel("t_image");
         $this->utils=new Utils();
 
     }
@@ -43,12 +44,24 @@ class Items{
         $this->logs->msg('###'.$uid, __FILE__, __LINE__);
 
         $newItem=Array('f_uid'=>$uid , 'f_textarea'=>$text);
-        $insertRes=$this->itemModel->insertInfo($newItem);
+        $insertRes=$this->itemModel->insertWithIdRes($newItem);
+        $this->logs->msg(print_r($insertRes,1), __FILE__, __LINE__);
         if($insertRes){
-            $ret=$this->retArray(0,'success');
-            $this->logs->msg(print_r($ret,1), __FILE__, __LINE__);
-            return $ret;
 
+            $newImages=Array();
+            foreach ($images as $key => $imageUrl){
+                $imageName=basename($imageUrl);
+                $infoImages=Array();
+                $infoImages['f_uid']=$uid;
+                $infoImages['f_itemid']=$insertRes;
+                $infoImages['f_imagename']=$imageName;
+                $this->imageModel->insertInfo($infoImages);
+                array_push($newImages, $infoImages);
+            }
+            $this->logs->msg(print_r($newImages,1), __FILE__, __LINE__);
+
+            $ret=$this->retArray(0,'success');
+            return $ret;
         }
 
     }

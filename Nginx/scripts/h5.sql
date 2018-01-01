@@ -24,7 +24,7 @@ CREATE TABLE `t_image` (
 `f_imageid`               BIGINT NOT NULL AUTO_INCREMENT,
 `f_itemid`                VARCHAR(32) NOT NULL DEFAULT '',
 `f_uid`                   VARCHAR(32) NOT NULL DEFAULT '',
-`f_imagename`             VARCHAR(32) NOT NULL DEFAULT '',
+`f_imagename`             VARCHAR(48) NOT NULL DEFAULT '',
 `f_created`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 `f_updated`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 PRIMARY KEY (`f_imageid`)

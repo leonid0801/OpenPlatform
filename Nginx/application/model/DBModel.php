@@ -219,7 +219,7 @@ class DBModel {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * 查询数据 某个条件
 	 *
@@ -323,7 +323,7 @@ class DBModel {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * insert 数据 并返回insert_id
 	 *
@@ -339,7 +339,7 @@ class DBModel {
 			$fields = '(' . implode ( ",", array_keys ( $info ) ) . ')';
 			$values = '(' . str_repeat ( "?,", count ( $info ) - 1 ) . '?)';
 			$sql = "INSERT INTO $this->_table $fields values $values ";
-			
+            $this->_logger->msg( "SQL:{$sql}", __FILE__, __LINE__ );
 			//记录执行时间 start
 			if(defined('DEBUG_SQL') && DEBUG_SQL)
 			{

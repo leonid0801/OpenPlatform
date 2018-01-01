@@ -31,7 +31,13 @@ class ItemNewModel extends DBModel {
 
 	public function insertInfo($params){
 		return $this->insert($params);
+
+        echo "ID of last inserted record is: " . mysql_insert_id();
 	}
+
+    public function insertWithIdRes($params){
+        return $this->insertBackLastID($params);
+    }
 	//获取订单
 	public function getItemList($where,$start=null,$offset=null){
 		return $this->select('*',$where,null,' f_created DESC limit 3',$start,$offset);
