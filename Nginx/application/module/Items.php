@@ -30,6 +30,10 @@ class Items{
         return $ret;
     }
 
+    private  function  getCurTime(){
+        return date("Y-m-d H:i:s",time());
+    }
+
     public function newItem($info){
 
         $this->logs->msg(print_r($info,1), __FILE__, __LINE__);
@@ -41,25 +45,32 @@ class Items{
         $images=$info['images'];
         $text=$info['text'];
         $uid=$this->utils->getUserIdInCookie();
-        $this->logs->msg('###'.$uid, __FILE__, __LINE__);
 
-        $newItem=Array('f_uid'=>$uid , 'f_textarea'=>$text);
+        $imageFocus=(count($images)>0)?basename($images[0]):'';
+        $cur_time=$this->getCurTime();
+        $newItem=Array(
+            'f_uid'=>$uid ,
+            'f_textarea'=>$text,
+            'f_focus'=>$imageFocus,
+            'f_created' => $cur_time,
+            'f_updated' => $cur_time);
         $insertRes=$this->itemModel->insertWithIdRes($newItem);
         $this->logs->msg(print_r($insertRes,1), __FILE__, __LINE__);
         if($insertRes){
-
             $newImages=Array();
             foreach ($images as $key => $imageUrl){
+                $cur_time=$this->getCurTime();
                 $imageName=basename($imageUrl);
                 $infoImages=Array();
                 $infoImages['f_uid']=$uid;
                 $infoImages['f_itemid']=$insertRes;
                 $infoImages['f_imagename']=$imageName;
+                $infoImages['f_created']=$cur_time;
+                $infoImages['f_updated']=$cur_time;
                 $this->imageModel->insertInfo($infoImages);
                 array_push($newImages, $infoImages);
             }
             $this->logs->msg(print_r($newImages,1), __FILE__, __LINE__);
-
             $ret=$this->retArray(0,'success');
             return $ret;
         }

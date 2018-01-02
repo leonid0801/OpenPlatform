@@ -52,6 +52,7 @@
 
 
 <script>
+    var imageIndex = new Array;
     var imageArr = new Array;
     var imageFileArr = new Array;
 
@@ -117,6 +118,7 @@
             //返回数据的格式
             datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
             data: {
+                index: imageIndex,
                 images: imageArr,
                 text:text
             },
@@ -157,7 +159,7 @@
             // 获取图片大小
             var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
             li.innerHTML = '<div class="progress"><span></span></div><div class="size">' + size + '</div>';
-            li.id='img_'+i;
+            li.id=''+i;
 
             $(".img-list").append($(li));
 
@@ -303,6 +305,7 @@
 
             console.log(text + '：' + imagedata.path);
             imageArr.push(imagedata.path);
+            imageIndex.push(''+$li.attr('id'));
 
             clearInterval(loop);
 
