@@ -82,4 +82,11 @@ class React_Opt extends BaseController{
         echo json_encode($ret);
     }
 
+    public function index1(){
+
+        $view = $this->_getView();
+        $view->render('index1')   ;
+
+    }
+
 }
