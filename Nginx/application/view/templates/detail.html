@@ -1,152 +1,174 @@
-<?php include('inc/wx_before_body.php');?>
-<body class="wx_detail">
-	<ul class="detail">
-	<?php 
-		
-		$item = $this->userinfo  ;
-        if( $item['commerce_type'] != 'sendinfo'){
+<!DOCTYPE html>
+<html>
 
-            if ($item['province'] == $item['city']){
-                $user = $item['city'].' '.$item['name']   ;
-            }else { 
-                $user = $item['province'].' '.$item['city'].' '.$item['name']   ;
-            }       
+<head>
+
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+    <!--jquery-->
+    <script src="/application/view/templates/jquery/2.1.1/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script src="/application/view/templates/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+    <!--lightGallery
+    <script src="/libs/js/lightgallery.js"></script>
+    <script src="/libs/css/lightgallery.css"></script>
+    -->
+
+    <!--jquery-weui-->
+    <script type='text/javascript' src='/libs/js/jquery-weui.js' charset='utf-8'></script>
+    <script type='text/javascript' src='/libs/js/swiper.js' charset='utf-8'></script>
+    <link rel="stylesheet" href="/libs/css/weui.min.css">
+    <link rel="stylesheet" href="/libs/css/jquery-weui.css">
+
+
+
+
+    <title>详情</title>
+
+    <style>
+        body{
+            background: lightgrey;
+        }
+        *{margin: 0;padding: 0;}
+        li{list-style-type: none;}
+        .img-list{margin: 0px 0px;}
+        .img-list li{
+            position: relative;
+            float:left;
+            background: #fff no-repeat center;
+            background-size: cover;}
+
+        div#header{
+            margin: 20px 0px;
+            width: 100%;
+            height: 10%;
+            background-color: #ffffff;
         }
 
-	?>	
-	<?php if( $item['commerce_type'] === 'order') {?>	
-	<!-- 新车询价 begin -->
-		<li>
-			<h1><?php echo $user.' '.$item['type_name'] ?></h1>
-			<cite><?php echo $item['date']?></cite>
-		</li>
-		<li><label>车型：</label><?php echo $item['carinfo'] ?></li>
-		<li>
-			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
-				<?php if($item['status'] == 1) { ?>
-				<span>未联系</span> 
-				<?php } else if ($item['status'] == 2) { ?>
-				<span class="succ">已联系</span> 
-				<?php } else if ($item['status'] == 3) { ?>
-				<span class="fail">联系未成功</span>
-				<?php } ?>
-		</li>
-		<li>
-			<label>时间：</label><?php echo $item['insert_time']?>
-		</li>
-		<li>
-			<table><tr><td nowrap="nowrap">备注：</td><td><?php echo $item['remark']?></td></tr></table>
-		</li>
-	<!-- 新车询价 end -->
+        h3 {
+            font-family: "Microsoft YaHei";
+            color: #808080;
+            padding:10px 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<div>
+
+    <div id="header" >
+        <h3 class="desc-text"></h3>
+    </div>
+    <div >
+        <ul class="img-list" id="lightgallery" onclick="toGallery()"  > <!---->
+        </ul>
+    </div>
 
 
-	<?php }else if ( $item['commerce_type'] === 'repair' ){?>
-	<!-- 预约维修 begin -->
-		<li>
-			<h1><?php echo $user ?></h1>
-			<cite><?php echo $item['date']?></cite>
-		</li>
-		<li><label>车型：</label><?php echo $item['carinfo'] ?></li>
-		<li>
-			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
-				<?php if($item['status'] == 1) { ?>
-				<span>未联系</span>
-				<?php } else if ($item['status'] == 2) { ?> 
-				<span class="succ">已联系</span> 
-				<?php } else if ($item['status'] == 3) { ?>
-				<span class="fail">联系未成功</span>
-				<?php } ?>
-		</li>
-		<li>
-           <table><tr><td nowrap="nowrap">故障类型：</td><td><?php echo $item['type_name']?></td></tr></table>		
-		</li>
-		<li>
-			<label>预约时间：</label><?php echo $item['repair_time']?> 
-		</li>
-		<li>
-			<label>时间：</label><?php echo $item['insert_time']?>
-		</li>
-		<li>
-			<table><tr><td nowrap="nowrap">备注：</td><td><?php echo $item['remark']?></td></tr></table>
-		</li>
-	<!-- 预约维修 end -->
-	
-	<?php }else if ( $item['commerce_type'] === 'act' ){?>
-	<!-- 活动报名 begin -->
-		<li>
-			<h1> <?php echo $user ?> <br/><span>【<?php echo $item['actname']?>】</span></h1>
-			<cite><?php echo $item['date']?></cite>
-		</li>
-		<li><?php echo $item['carinfo'] ?></li>
-		<li>
-			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
-				<?php if($item['status'] == 1) { ?>
-				<span>未联系</span> 
-				<?php } else if ($item['status'] == 2) { ?>
-				<span class="succ">已联系</span> 
-				<?php } else if ($item['status'] == 3) { ?>
-				<span class="fail">联系未成功</span>
-				<?php } else {?>
-				<span class="fail">联系状态未知</span>
-				<?php } ?>	
-		</li>
-		<li>
-			<label>时间：</label><?php echo $item['insert_time']?>
-		</li>
-	<!-- 活动报名 end -->
-	
 
 
-	<?php }else if ( $item['commerce_type'] === 'sendinfo' ){?>
-	<!-- 用户短信获取地址 begin -->
-		<li>
-			<h1>用户短信获取地址</h1>
-			<cite><?php echo $item['date']?></cite>
-		</li>
-		<li>
-			<label>手机：</label><a href="tel:<?php echo $item['phone']?>"><?php echo $item['phone']?></a> 
-                <?php if($item['status'] == 1) { ?>
-                <span>未联系</span>
-                <?php } else if ($item['status'] == 2) { ?>
-                <span class="succ">已联系</span>
-                <?php } else if ($item['status'] == 3) { ?>
-                <span class="fail">联系未成功</span>
-                <?php } else {?>
-                <span class="fail">联系状态未知</span>
-                <?php } ?>		
-		</li>
-		<li>
-			<label>时间：</label><?php echo $item['insert_time']?>
-		</li>
-	<?php } ?>	
-	
-	<!-- 活动报名 end -->
-		<li class="line">
-			<h2>确认联系结果</h2>
-			<span>我们可以根据联系结果帮您过滤更多无效商机</span>
-		</li>
-		<li class="button" id="<?php echo $item['id'] ?>" commerce_type="<?php echo $item['commerce_type']?>" >
-			<?php if ($item['eff_con'] == 'none') { ?>
-			<button class="succ">有效商机<em></em></button><br/>
-			<button class="fail">无效商机<em></em></button><br/>
-			<button class="not">联系未成功<em></em></button><br/>
-			<?php }else if ($item['eff_con'] == 'succ') {?>
-            <button class="succ touched">有效商机<em></em></button><br/>
-            <button class="fail">无效商机<em></em></button><br/>
-            <button class="not">联系未成功<em></em></button><br/>
-            <?php }else if ($item['eff_con'] == 'fail') {?>
-            <button class="succ">有效商机<em></em></button><br/>
-            <button class="fail touched">无效商机<em></em></button><br/>
-            <button class="not">联系未成功<em></em></button><br/>
-            <?php }else if ($item['eff_con'] == 'not') {?>
-            <button class="succ">有效商机<em></em></button><br/>
-            <button class="fail">无效商机<em></em></button><br/>
-            <button class="not touched">联系未成功<em></em></button><br/>
-			<?php } ?>
-			
-		</li>
-	<!-- 用户短信获取地址 end -->
-		
-	</ul>
+</div>
+<?php
+$ret = $this->ret;
+
+?>
+
+<script>
+
+    var imageUrls=[];
+
+
+    var itemId='<?php echo $ret["f_itemid"]?>';
+    //alert(itemId);
+    window.onload = function() {
+        //alert(window.location);
+        getDesc();
+        getImages();
+
+    }
+
+    function getDesc() {
+        $.ajax({
+            type:"post",
+            url: 'https://bjwob.top/index.php/react/opt/get_desc',
+            data: {
+                itemId: itemId
+            },
+            success: function (res) {
+                console.log(res)
+                var obj = eval("("+res+")");
+                if (obj.code==0){
+                   fillDOM(obj.data);
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+    function getImages() {
+        $.ajax({
+            type:"post",
+            url: 'https://bjwob.top/index.php/react/opt/get_images',
+            data: {
+                itemId: itemId
+            },
+            success: function (res) {
+                console.log(res)
+                var obj = eval("("+res+")");
+                if (obj.code==0){
+                    loadDOM(obj.data);
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+    function fillDOM (data) {
+        if(data.length>0){
+            var desc=data[0]['f_textarea'];
+            $(".desc-text").append(desc);
+        }
+    }
+
+    //加载数据到页面
+    function loadDOM (data) {
+
+        var screenWidth=window.screen.width
+        var imageWith=screenWidth/3
+        for (let i in data) {
+            var imageUrl=data[i].f_imagename
+            var li = document.createElement("li");
+            li.style.width=imageWith+'px';
+            li.style.height=imageWith+'px';
+            li.innerHTML = '<div class="size" ></div>';
+            //li.setAttribute('data-src', imageUrl)
+
+            imageUrls.push(imageUrl)
+            $(".img-list").append($(li));
+            $(li).css("background-image", "url(" + imageUrl + ")");
+        }
+    }
+
+    /*deprecated*/
+    function gallery() {
+        var urls=imageUrls.join("-");
+        window.location.href="https://bjwob.top/index.php/react/opt/to_gallery?imageurls="+urls
+    }
+
+    function toGallery(){
+        var pb1 = $.photoBrowser({
+            items: imageUrls
+        });
+        pb1.open()
+    }
+</script>
+
 </body>
-<?php include('inc/wx_after_body.php');?>
+</html>

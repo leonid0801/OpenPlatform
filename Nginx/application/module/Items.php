@@ -77,6 +77,75 @@ class Items{
 
     }
 
+    private  function  genImageUrl($uid,$imageName){
+        return FULL_ITEM_DIR_DOMAIN.$uid.'/'.$imageName;
+    }
+
+    private function  resProcess($results){
+        $ret=Array();
+        foreach ($results as $key => $result){
+            $item=Array();
+            $item['f_itemid']=$result['f_itemid'];
+            //$item['f_focus']=FULL_ITEM_DIR_DOMAIN.$result['f_uid'].'/'.$result['f_focus'];
+            $item['f_focus']=$this->genImageUrl($result['f_uid'], $result['f_focus']);
+            $item['f_textarea']=$result['f_textarea'];
+            array_push($ret,$item);
+        }
+        return $ret;
+    }
+
+    public function getBottom($info){
+
+        if (!array_key_exists('page', $info) or !array_key_exists('page_size', $info)){
+            return $this->retArray(1,'failed');
+        }
+
+        $page_index = (int)$info["page"];
+        $page_size = (int)$info["page_size"];
+        $results = $this->itemModel->getMoreItemList("1=1", $page_index*$page_size, $page_size);
+
+        $ret=$this->resProcess($results);
+        /*
+        $ext_res = $this->joinUserInfo($results);
+        if (false == $ext_res){
+            $ret["code"]=1;
+            $ret["msg"]="user info none";
+            return $ret;
+        }*/
+
+        return $this->retArray(0,'success',$ret);
+    }
+
+    private function  resImagesProcess($results){
+        $ret=Array();
+        foreach ($results as $key => $result){
+            $item=Array();
+            $item['f_itemid']=$result['f_itemid'];
+            $item['f_imagename']=$this->genImageUrl($result['f_uid'], $result['f_imagename']);
+            array_push($ret,$item);
+        }
+        return $ret;
+    }
+
+    public function getImages($info){
+        if (!array_key_exists('itemId', $info)){
+            return $this->retArray(1,'failed');
+        }
+        $itemId=$info['itemId'];
+        $results = $this->imageModel->getImagesItemId($itemId);
+        $ret=$this->resImagesProcess($results);
+        return $this->retArray(0,'success',$ret);
+    }
+
+    public  function  getDesc($info){
+        if (!array_key_exists('itemId', $info)){
+            return $this->retArray(1,'failed');
+        }
+        $itemId=$info['itemId'];
+        $results = $this->itemModel->getDescByFid($itemId);
+        return $this->retArray(0,'success',$results);
+    }
+
 
 
 }

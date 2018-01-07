@@ -58,4 +58,28 @@ class React_Opt extends BaseController{
         $ret=$this->items->newItem($_POST);
         echo json_encode($ret);
     }
+
+    public function get_bottom(){
+        $ret=$this->items->getBottom($_GET);
+        echo json_encode($ret);
+    }
+
+    public function get_detail(){
+        //$ret = $this->item->getItem($_GET);
+        $view = $this->_getView();
+        $view->assign('ret',$_GET);
+        $view->render('detail')   ;
+        //echo json_encode($_GET);
+    }
+
+    public function get_images(){
+        $ret=$this->items->getImages($_POST);
+        echo json_encode($ret);
+    }
+
+    public function get_desc(){
+        $ret=$this->items->getDesc($_POST);
+        echo json_encode($ret);
+    }
+
 }

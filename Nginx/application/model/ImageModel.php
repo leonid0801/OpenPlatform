@@ -31,6 +31,11 @@ class ImageModel extends DBModel {
     }
 
 
+    public function getImagesItemId($item_id){
+        return $this->select(parent::ALL_FIELD, "f_itemid='{$item_id}'");
+    }
+
+
 	//添加订单
 	public function insertInfo($params){
 		$this->insert($params);

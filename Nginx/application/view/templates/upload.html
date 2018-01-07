@@ -11,6 +11,7 @@
     <script src="/application/view/templates/js/exif.js"></script>
 
 
+
   <title>图片上传</title>
   <style>
     *{margin: 0;padding: 0;}
@@ -95,7 +96,7 @@
 
             //如果图片大小小于100kb，则直接上传
             if (imageFile.src.length <= maxsize) {
-                upload(imageFile, imageType, li);
+                upload(imageFile.src, imageType, li);
             }else{
                 var data = compress(imageFile);
                 upload(data, imageType, li);

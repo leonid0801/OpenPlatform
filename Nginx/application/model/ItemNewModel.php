@@ -31,8 +31,6 @@ class ItemNewModel extends DBModel {
 
 	public function insertInfo($params){
 		return $this->insert($params);
-
-        echo "ID of last inserted record is: " . mysql_insert_id();
 	}
 
     public function insertWithIdRes($params){
@@ -49,6 +47,10 @@ class ItemNewModel extends DBModel {
 
     public function getItemByFid($item_id){
         return $this->select(parent::ALL_FIELD, "f_itemid='{$item_id}'");
+    }
+
+    public function getDescByFid($item_id){
+        return $this->select(Array("f_textarea"), "f_itemid='{$item_id}'");
     }
 
     public function del($where){
