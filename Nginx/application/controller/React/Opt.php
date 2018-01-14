@@ -89,4 +89,19 @@ class React_Opt extends BaseController{
 
     }
 
+
+    public function user(){
+
+        $view = $this->_getView();
+        $view->render('user')   ;
+
+    }
+
+    public function pubs(){
+
+        $view = $this->_getView();
+        $view->render('pubs')   ;
+
+    }
+
 }

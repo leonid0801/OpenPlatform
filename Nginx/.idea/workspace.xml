@@ -12,7 +12,7 @@
     <file path="/Logs.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511700078509" ignored="false" />
     <file path="/LogicBase.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1511701322509" ignored="false" />
     <file path="/ItemModel.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1512182525963" ignored="false" />
-    <file path="/index.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515320467884" ignored="false" />
+    <file path="/index.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515860380701" ignored="false" />
     <file path="/Detail.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1513436184491" ignored="false" />
     <file path="/node.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515213924443" ignored="false" />
     <file path="/Feeds.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514088813188" ignored="false" />
@@ -23,7 +23,7 @@
     <file path="/ImageUpload.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514003253319" ignored="false" />
     <file path="/Image.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514604884764" ignored="false" />
     <file path="/login.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514007806644" ignored="false" />
-    <file path="/Opt.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515317722847" ignored="false" />
+    <file path="/Opt.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515894219396" ignored="false" />
     <file path="/Application.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514037983660" ignored="false" />
     <file path="/signup.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514047631069" ignored="false" />
     <file path="/h5.sql" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1514905934547" ignored="false" />
@@ -35,6 +35,10 @@
     <file path="/ImageModel.php" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515216281828" ignored="false" />
     <file path="/pb.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515312629498" ignored="false" />
     <file path="/index1.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515320020773" ignored="false" />
+    <file path="/weui.css" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515375919383" ignored="false" />
+    <file path="/styles.css" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515425420420" ignored="false" />
+    <file path="/user.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515860985552" ignored="false" />
+    <file path="/pubs.html" changelist="85bc47ee-a816-41a8-9ff0-850a839690bf" time="1515938334082" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,48 +58,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/view/templates/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="4" selection-start="727" selection-end="780" vertical-scroll-proportion="-5.6491227">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/view/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="4" selection-start="402" selection-end="402" vertical-scroll-proportion="-2.3232324">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index1.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/view/templates/index1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="23" selection-start="253" selection-end="253" vertical-scroll-proportion="-2.4210527">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="example.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/css/example.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="weui.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/css/weui.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="32" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
+            <state line="224" column="70" selection-start="7385" selection-end="7391" vertical-scroll-proportion="-3.25">
               <folding />
             </state>
           </provider>
@@ -104,36 +70,41 @@
       <file leaf-file-name="Opt.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controller/React/Opt.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="35" selection-start="2530" selection-end="2530" vertical-scroll-proportion="-10.84375">
+            <state line="102" column="33" selection-start="2743" selection-end="2743" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery-weui.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/css/jquery-weui.css">
+      <file leaf-file-name="user.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="18" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
+            <state line="84" column="8" selection-start="2819" selection-end="2819" vertical-scroll-proportion="-60.375">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="weui.min.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/css/weui.min.css">
+      <file leaf-file-name="index1.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/index1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="27136" selection-start="27252" selection-end="27252" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#425#6645#1" expanded="true" />
-                <element signature="e#46215#47742#1" expanded="true" />
-                <element signature="e#47925#49628#2" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lightgallery.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/css/lightgallery.css">
+      <file leaf-file-name="pubs.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/pubs.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="33" selection-start="2122" selection-end="2122" vertical-scroll-proportion="0.024242423">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail_bak.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/detail_bak.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -141,24 +112,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery-weui.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/js/jquery-weui.js">
+      <file leaf-file-name="login_bak.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/login_bak.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1511562112000" expanded="true" signature="115989:116195" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="116028:116177" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="148298:148484" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="148333:148470" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="148554:149137" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="148662:149103" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="148719:148772" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="148811:149085" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="149213:149800" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="149321:149766" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="149378:149431" placeholder="..." />
-                <marker date="1511562112000" expanded="true" signature="149470:149748" placeholder="..." />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="0" selection-start="419" selection-end="419" vertical-scroll-proportion="-7.1875">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="weui.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/css/weui.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1633" column="0" selection-start="37708" selection-end="37862" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/view/templates/detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="57" selection-start="727" selection-end="780" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,10 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/utils/Utils.php" />
-        <option value="$PROJECT_DIR$/application/model/react/Opt.php" />
-        <option value="$PROJECT_DIR$/application/module/Opt.php" />
-        <option value="$PROJECT_DIR$/application/model/DBModel.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/scripts/h5.sql" />
         <option value="$PROJECT_DIR$/application/view/templates/node.html" />
@@ -186,9 +167,13 @@
         <option value="$PROJECT_DIR$/application/view/templates/upload.html" />
         <option value="$PROJECT_DIR$/application/view/templates/pb.html" />
         <option value="$PROJECT_DIR$/application/view/templates/detail.html" />
-        <option value="$PROJECT_DIR$/application/controller/React/Opt.php" />
         <option value="$PROJECT_DIR$/application/view/templates/index1.html" />
+        <option value="$PROJECT_DIR$/libs/css/weui.css" />
+        <option value="$PROJECT_DIR$/application/view/templates/css/styles.css" />
         <option value="$PROJECT_DIR$/application/view/templates/index.html" />
+        <option value="$PROJECT_DIR$/application/controller/React/Opt.php" />
+        <option value="$PROJECT_DIR$/application/view/templates/user.html" />
+        <option value="$PROJECT_DIR$/application/view/templates/pubs.html" />
       </list>
     </option>
   </component>
@@ -225,7 +210,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -282,11 +266,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -386,6 +366,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -395,23 +376,23 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\OpenPlatform\Nginx\application\view\img" />
       <recent name="E:\OpenPlatform\Nginx\libs\css" />
       <recent name="E:\OpenPlatform\Nginx\application\view\templates" />
       <recent name="E:\OpenPlatform\Nginx\libs\js" />
       <recent name="E:\OpenPlatform\Nginx\libs\lightgallery" />
-      <recent name="E:\OpenPlatform\Nginx\application\view\templates\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\OpenPlatform\Nginx\libs" />
+      <recent name="E:\OpenPlatform\Nginx\application\img" />
       <recent name="E:\OpenPlatform\Nginx\libs\js" />
       <recent name="E:\OpenPlatform\Nginx\application\module" />
       <recent name="E:\OpenPlatform\Nginx\application\utils" />
-      <recent name="E:\OpenPlatform\Nginx\config" />
-      <recent name="E:\OpenPlatform\Nginx\application\view\img" />
     </key>
   </component>
   <component name="RunManager">
@@ -448,7 +429,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19015151" sideWeight="0.67075306" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21742424" sideWeight="0.67075306" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -526,144 +507,102 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/module/Items.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="53" selection-start="4647" selection-end="4647" vertical-scroll-proportion="-22.5625">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/libs/img/icon_nav_article.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1002" column="28" selection-start="16003" selection-end="16003" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/libs/img/icon_nav_button.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/msg/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="97.03125">
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/libs/img/icon_nav_cell.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/js/lightgallery.js">
+    <entry file="file://$PROJECT_DIR$/application/view/View.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1344" column="9" selection-start="44136" selection-end="44136" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1515294663656" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1515294663656" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/view/templates/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="601" selection-end="601" vertical-scroll-proportion="-4.4385967">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/js/swiper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/js/jquery-weui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1511562112000" expanded="true" signature="115989:116195" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="116028:116177" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="148298:148484" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="148333:148470" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="148554:149137" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="148662:149103" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="148719:148772" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="148811:149085" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="149213:149800" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="149321:149766" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="149378:149431" placeholder="..." />
-            <marker date="1511562112000" expanded="true" signature="149470:149748" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/css/lightgallery.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/css/jquery-weui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="18" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="38" column="20" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/css/weui.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="27136" selection-start="27252" selection-end="27252" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#425#6645#1" expanded="true" />
-            <element signature="e#46215#47742#1" expanded="true" />
-            <element signature="e#47925#49628#2" expanded="true" />
-          </folding>
-        </state>
+        <state line="4" column="32460" selection-start="32453" selection-end="32576" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="20" selection-start="2641" selection-end="2646" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libs/css/weui.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="32" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0">
+        <state line="1633" column="0" selection-start="37708" selection-end="37862" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/view/templates/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="4" selection-start="727" selection-end="780" vertical-scroll-proportion="-5.6491227">
+        <state line="20" column="57" selection-start="727" selection-end="780" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controller/React/Opt.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="35" selection-start="2530" selection-end="2530" vertical-scroll-proportion="-10.84375">
+        <state line="102" column="33" selection-start="2743" selection-end="2743" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/css/example.css">
+    <entry file="file://$PROJECT_DIR$/application/view/templates/detail_bak.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/login_bak.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="419" selection-end="419" vertical-scroll-proportion="-7.1875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/view/templates/index1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="23" selection-start="253" selection-end="253" vertical-scroll-proportion="-2.4210527">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="8" selection-start="2819" selection-end="2819" vertical-scroll-proportion="-60.375">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/view/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="4" selection-start="402" selection-end="402" vertical-scroll-proportion="-2.3232324">
+        <state line="224" column="70" selection-start="7385" selection-end="7391" vertical-scroll-proportion="-3.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/view/templates/pubs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="33" selection-start="2122" selection-end="2122" vertical-scroll-proportion="0.024242423">
           <folding />
         </state>
       </provider>
