@@ -3,34 +3,95 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          name="viewport"  content="minimal-ui">
 	<title>Demo</title>
     <!--
-    <script src="/application/view/templates/bootstrap-3.0.3/js/bootstrap.min.js"></script>
-	<link  rel="stylesheet" type="text/css" href="/application/view/templates/bootstrap-3.0.3/css/bootstrap.min.css">
-	<link  rel="stylesheet" type="text/css" href="/libs/css/weui.css">
-	-->
-	<script src="/application/view/templates/jquery/2.1.1/jquery.min.js"></script>
 
-
-    <link  rel="stylesheet" type="text/css" href="/application/view/templates/css/normalize.css">
     <link  rel="stylesheet" type="text/css" href="/application/view/templates/css/default.css">
+    <link  rel="stylesheet" type="text/css" href="/application/view/templates/css/normalize.css">
+    <link  rel="stylesheet" type="text/css" href="/libs/css/weui.css">
+    <link  rel="stylesheet" type="text/css" href="/application/view/templates/bootstrap-3.0.3/css/bootstrap.min.css">
+	-->
+
+    <script src="/application/view/templates/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/application/view/templates/bootstrap-3.0.3/js/bootstrap.min.js"></script>
     <link  rel="stylesheet" type="text/css" href="/application/view/templates/css/styles.css">
 
+<style>
 
+    .index-tab{
+        position:fixed;
+    }
+
+    .index-tabbar:before{
+        content:" ";
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        height:1px;
+        border-top:1px solid #C0BFC4;
+        color:#C0BFC4;
+        -webkit-transform-origin:0 0;
+        transform-origin:0 0;
+        -webkit-transform:scaleY(0.5);
+        transform:scaleY(0.5);
+    }
+
+    .index-tabbar{
+        display:-webkit-box;
+        display:-webkit-flex;
+        display:flex;
+        position:fixed;
+        z-index:500;
+        bottom:0;
+        width:100%;
+        background-color:#F7F7FA;
+    }
+
+    .index-tabbar__icon{
+        display:inline-block;
+        width:27px;
+        height:27px;
+    }
+
+    .index-tabbar__item{
+        display:block;
+        -webkit-box-flex:1;
+        -webkit-flex:1;
+        flex:1;
+        padding:5px 0 0;
+        font-size:0;
+        color:#999999;
+        text-align:center;
+        -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+    }
+
+    .index-tabbar__label{
+        text-align:center;
+        color:#999999;
+        font-size:10px;
+        line-height:1.8;
+    }
+
+    .index-tabbar__item.index-bar__item_on .index-tabbar__icon,
+    .index-tabbar__item.index-bar__item_on .index-tabbar__icon > i,
+    .index-tabbar__item.index-bar__item_on .index-tabbar__label{
+        color:#09BB07;
+    }
+</style>
 
 </head>
 <body>
     <div class="wall">
     </div>
 
-    <!--
+<!--
     <div class="page">
         <div class="page__bd" style="height: 100%;">
             <div class="weui-tab">
-                <div class="weui-tab__panel">
-
-                </div>
                 <div class="weui-tabbar">
                     <a href="javascript:;" class="weui-tabbar__item">
                         <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
@@ -48,9 +109,8 @@
             </div>
         </div>
     </div>
-    -->
 
-    <!--
+
     <div class="main_nav_bottom">
         <nav class="navbar navbar-default navbar-fixed-bottom">
             <div class="container" align="center">
@@ -72,12 +132,42 @@
             </div>
         </nav>
     </div>
-    -->
+-->
+
+
+    <div class="page">
+        <div class="page__bd" >
+            <div class="index-tab">
+                <div class="index-tabbar">
+                    <a href="javascript:;" class="index-tabbar__item">
+                        <img src="/libs/img/icon_nav_button.png" alt="" class="index-tabbar__icon">
+                        <p class="index-tabbar__label">首页</p>
+                    </a>
+                    <a href="https://bjwob.top/index.php/file/image/upload" class="index-tabbar__item">
+                        <img src="/libs/img/icon_nav_article.png" alt="" class="index-tabbar__icon">
+                        <p class="index-tabbar__label">发布</p>
+                    </a>
+                    <a href="https://bjwob.top/index.php/react/opt/user" class="index-tabbar__item">
+                        <img src="/libs/img/icon_nav_cell.png" alt="" class="index-tabbar__icon">
+                        <p class="index-tabbar__label">我</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script>
         console.log(location.pathname);
-
+        /*
+        var str = location.href;
+        var arr = str.split("/");
+        delete arr[arr.length-1];
+        var dir = arr.join("/");
+        alert(dir);
+        */
         var pageItemCount = 10;
         let [pageIndex] = [0];
 

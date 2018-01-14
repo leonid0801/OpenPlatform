@@ -1,10 +1,6 @@
 <!DOCTYPE>
 <html>
-<?php
-var_dump($_COOKIE);
-?>
 <head>
-
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	<title>Demo</title>
@@ -14,60 +10,8 @@ var_dump($_COOKIE);
 </head>
 <body>
     <ul class="list-group">
-        <!--
-        <a class="list-group-item">
-            <h4 class="list-group-item-heading">列表1标题</h4>
-            <p class="list-group-item-text">列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容列表1内容</p>
-        </a>
-        <a class="list-group-item">
-            <h4 class="list-group-item-heading">列表2标题</h4>
-            <p class="list-group-item-text">列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容列表2内容</p>
-        </a>
-        <a class="list-group-item disabled">
-            <h4 class="list-group-item-heading">列表3标题</h4>
-            <p class="list-group-item-text">列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容列表3内容</p>
-        </a>
-        <a class="list-group-item">
-            <h4 class="list-group-item-heading">列表4标题</h4>
-            <p class="list-group-item-text">列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容列表4内容</p>
-        </a>
-        <a class="list-group-item">
-            <h4 class="list-group-item-heading">列表5标题</h4>
-            <p class="list-group-item-text">列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容列表5内容</p>
-        </a>
-        <a class="list-group-item">
-            <h4 class="list-group-item-heading">列表6标题</h4>
-            <p class="list-group-item-text">列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容列表6内容</p>
-        </a>
-        <template id="productrow">
-            <a class="list-group-item">
-                <h4 class="list-group-item-heading"></h4>
-                <p class="list-group-item-text"></p>
-            </a>
-        </template>
-        -->
     </ul>
-    <div class="main_nav_bottom">
-        <nav class="navbar navbar-default navbar-fixed-bottom">
-            <div class="container" align="center">
-                <style>
-                    .nav-tabs
-                    {
-                        text-align: center;
-                        height: 40px;
-                        line-height: 40px;
-                    }
-                </style>
-                <ul class="nav nav-tabs nav-tabs-justified">
-                    <div class="row" align="center">
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center"><li><a href="#">首页</a></li></div>
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center"><li><a href="https://bjwob.top/index.php/file/image/upload">发布</a></li></div>
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center"><li><a href="#">我的</a></li></div>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-    </div>
+
     <script>
         console.log(location.pathname);
 
@@ -98,7 +42,7 @@ var_dump($_COOKIE);
         function askData() {
             $.ajax({
                 type:"get",
-                url: 'https://bjwob.top/index.php/api/wxapp/get_bottom_data',
+                url: 'https://bjwob.top/index.php/react/opt/get_bottom',
                 data: {
                     page: pageIndex,
                     page_size: pageItemCount
@@ -123,7 +67,7 @@ var_dump($_COOKIE);
 
                 var content = data[i].f_textarea
                 var headUrl = data[i].f_avatar_url
-                var itemId = data[i].f_id
+                var itemId = data[i].f_itemid
                 let html =
                         '<a class="list-group-item" onclick="detail('+itemId+')"><p class="list-group-item-text">'
                                 +content
@@ -142,7 +86,7 @@ var_dump($_COOKIE);
 
         function detail(itemId) {
             console.log(itemId)
-            window.location.href="https://bjwob.top/index.php/item/feeds/detail?f_id="+itemId;
+            window.location.href="https://bjwob.top/index.php/react/opt/get_detail?f_itemid="+itemId;
         }
 
         $("a").click(function(res){
