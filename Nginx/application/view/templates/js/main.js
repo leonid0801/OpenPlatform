@@ -1,14 +1,22 @@
 $().ready(function() {
 	$("#login_form").validate({
 		rules: {
-            usermobile: "required",
+            //usermobile: "required",
+            usermobile: {
+                required: true,
+                minlength: 11
+            },
 			password: {
 				required: true,
-				minlength: 5
+				minlength: 6
 			}
 		},
 		messages: {
-            usermobile: "请输入手机号",
+            //usermobile: "请输入手机号",
+            usermobile: {
+                required: "请输入手机号",
+                minlength: jQuery.format("手机号不能小于{0}个字 符")
+            },
 			password: {
 				required: "请输入密码",
 				minlength: jQuery.format("密码不能小于{0}个字 符")
@@ -18,9 +26,13 @@ $().ready(function() {
 	$("#register_form").validate({
 		rules: {
 			username: "required",
+            usermobile: {
+                required: true,
+                minlength: 11
+            },
 			password: {
 				required: true,
-				minlength: 5
+				minlength: 6
 			},
 			rpassword: {
 				equalTo: "#register_password"
@@ -32,7 +44,11 @@ $().ready(function() {
 		},
 		messages: {
 			username: "请输入昵称",
-            usermobile: "请输入手机号",
+            //usermobile: "请输入手机号",
+            usermobile: {
+                required: "请输入手机号",
+                minlength: jQuery.format("手机号不能小于{0}个字 符")
+            },
 			password: {
 				required: "请输入密码",
 				minlength: jQuery.format("密码不能小于{0}个字 符")
