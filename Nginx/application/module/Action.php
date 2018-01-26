@@ -35,8 +35,13 @@ class Action{
         }else{
             //session_start();
             $uid=$get_info['uid'];
+
             $usermobile=$get_info['usermobile'];
             $password=$get_info['password'];
+
+            $useRet = $this->userModel->getUserByMobile($usermobile);
+            $use_id=$useRet[0]['f_uid'];
+
             if (array_key_exists('remember', $get_info)){
                 $remember=$get_info['remember'];
                 if ($remember=='on'){
@@ -46,7 +51,7 @@ class Action{
 
                     //$password=$this->slatAdded($password);
                     //$_SESSION['usermob']=$usermobile;
-                    setcookie("uid",$uid,time()+90*3600*24,'/');
+                    setcookie("uid",$use_id,time()+90*3600*24,'/');
                     setcookie("usermobile",$usermobile,time()+90*3600*24,'/');
                     setcookie("password",$password,time()+90*3600*24,'/');
                     //var_dump($_COOKIE);
@@ -55,7 +60,7 @@ class Action{
                 return True;
             }else{
 
-                setcookie("uid",$uid,time()-1);
+                setcookie("uid",$use_id,time()-1);
                 setcookie("usermobile",$usermobile,time()-1);
                 setcookie("password",$password,time()-1);
                 return False;

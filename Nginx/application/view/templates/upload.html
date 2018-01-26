@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--<html lang="en">-->
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <!--bootstrap
     <script src="/application/view/templates/jquery/2.1.1/jquery.min.js"></script>
+    -->
     <script src="/application/view/templates/inc/js/jquery-2.1.1.min.js"></script>
-    <link href="/application/view/templates/bootstrap-3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/application/view/templates/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+
     <script src="/application/view/templates/js/exif.js"></script>
 
+    <!--bootstrap    -->
+    <link href="/application/view/templates/bootstrap-3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/application/view/templates/bootstrap-3.0.3/js/bootstrap.min.js"></script>
+
+    <!--jquery-weui-->
+    <script type='text/javascript' src='/libs/js/jquery-weui.js' charset='utf-8'></script>
+    <link rel="stylesheet" href="/libs/css/weui.min.css">
+    <!--jquery-weui should be after weui in order to get correct boast style-->
+    <link rel="stylesheet" href="/libs/css/jquery-weui.css">
 
 
-  <title>图片上传</title>
-  <style>
+
+    <title>图片上传</title>
+    <style>
     *{margin: 0;padding: 0;}
     li{list-style-type: none;}
     a,input{outline: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
@@ -30,25 +40,22 @@
     .pic-list{margin: 10px;line-height: 18px;font-size: 13px;}
     .pic-list a{display: block;margin: 10px 0;}
     .pic-list a img{vertical-align: middle;max-width: 30px;max-height: 30px;margin: -4px 0 0 10px;}
-  </style>
+    </style>
 </head>
 <body>
 
-
 <div class="container">
-<input type="file" id="choose" accept="image/*" multiple>
-<ul class="img-list"></ul>
-<a id="upload">上传图片</a>
-<span class="tips">只允许上传jpg、png及gif</span>
-<div class="pic-list">你上传的图片(图片有效期为1分钟)：</div>
+    <input type="file" id="choose" accept="image/*" multiple>
+    <ul class="img-list"></ul>
+    <a id="upload">上传图片</a>
+    <span class="tips">只允许上传jpg、png及gif</span>
+    <div class="pic-list">你上传的图片(图片有效期为1分钟)：</div>
 
-<div class="form-group">
-    <label for="name">标题/描述</label>
-    <textarea class="form-control" rows="3" id="curTitle"></textarea>
-</div>
-
-
-<button type="button" class="btn btn-info btn-block" id="submit">发布</button>
+    <div class="form-group">
+        <label for="name">标题/描述</label>
+        <textarea class="form-control" rows="3" id="curTitle"></textarea>
+    </div>
+    <button type="button" class="btn btn-info btn-block" id="submit">发布</button>
 </div>
 
 
@@ -57,10 +64,7 @@
     var imageArr = new Array;
     var imageFileArr = new Array;
 
-
-
     var filechooser = document.getElementById("choose");
-
     //    用于压缩图片的canvas
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext('2d');
@@ -83,7 +87,7 @@
 
     $("#submit").on("click", function() {
         //alert(imageArr);
-        newItem();
+        imageUpload(publish);
     })
 
     function imageUpload(callback) {
@@ -110,6 +114,10 @@
 
     }
 
+    function jumpurl(){
+        window.location.href="https://bjwob.top/index.php/item/feeds/index"
+    }
+
     function publish() {
         var text = document.getElementById('curTitle').value;
         $.ajax({
@@ -127,7 +135,11 @@
             success: function (res) {
                 var obj = eval("("+res+")");
                 if (obj.code==0){
-                    alert('发布成功');
+                    //alert('发布成功');
+                    showToast()
+                    window.setTimeout("jumpurl()",1500);
+                    //
+
                 }
             },
             error: function (err) {
@@ -136,9 +148,13 @@
         })
     }
 
-    function newItem() {
-         imageUpload(publish);
+    function showToast(){
+        $.toast("发布成功", function() {
+            console.log('close');
+        });
     }
+
+
 
     filechooser.onchange = function() {
         if (!this.files.length) return;
@@ -572,6 +588,8 @@
         );
         return newImage;
     }
+
+
 </script>
 </body>
 </html>

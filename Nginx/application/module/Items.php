@@ -116,6 +116,45 @@ class Items{
         return $this->retArray(0,'success',$ret);
     }
 
+    public function getUserPubs($info){
+        $uid=$this->utils->getUserIdInCookie();
+
+        if (!array_key_exists('page', $info) or !array_key_exists('page_size', $info)){
+            return $this->retArray(1,'failed');
+        }
+
+        $page_index = (int)$info["page"];
+        $page_size = (int)$info["page_size"];
+        $results = $this->itemModel->getMoreItemList("f_uid=$uid", $page_index*$page_size, $page_size);
+
+        $ret=$this->resProcess($results);
+        /*
+        $ext_res = $this->joinUserInfo($results);
+        if (false == $ext_res){
+            $ret["code"]=1;
+            $ret["msg"]="user info none";
+            return $ret;
+        }*/
+
+        return $this->retArray(0,'success',$ret);
+
+    }
+
+    public function delItem($info){
+        $uid=$this->utils->getUserIdInCookie();
+
+        if (!array_key_exists('itemId', $info)){
+            return $this->retArray(1,'failed');
+        }
+        $itemId = $info["itemId"];
+        $res_del = $this->itemModel->del("f_itemid='$itemId'");
+        $results = $this->imageModel->del("f_itemid='$itemId'");
+
+        return $this->retArray(0,'success');
+
+    }
+
+
     private function  resImagesProcess($results){
         $ret=Array();
         foreach ($results as $key => $result){

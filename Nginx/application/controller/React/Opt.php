@@ -64,6 +64,18 @@ class React_Opt extends BaseController{
         echo json_encode($ret);
     }
 
+    public function get_user_pubs(){
+        $ret=$this->items->getUserPubs($_GET);
+        echo json_encode($ret);
+    }
+
+    public function del_item(){
+        $ret=$this->items->delItem($_POST);
+        echo json_encode($ret);
+    }
+
+
+
     public function get_detail(){
         //$ret = $this->item->getItem($_GET);
         $view = $this->_getView();

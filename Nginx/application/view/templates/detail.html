@@ -23,6 +23,7 @@
 
 
 
+
     <title>详情</title>
 
     <style>
@@ -110,7 +111,7 @@
         <ul class="img-list" id="lightgallery" onclick="toGallery()"  > <!---->
         </ul>
     </div>
-    <div class="weui-flex" onclick="pubDel()">
+    <div class="weui-flex" onclick="showToast()">
         <div class="weui-flex__item"><div class="placeholder">删除</div></div>
     </div>
 </div>
@@ -212,6 +213,43 @@ $ret = $this->ret;
             items: imageUrls
         });
         pb1.open()
+    }
+
+    function showToast(){
+        delItem();
+    }
+    function showToast1(){
+        $.toast("删除成功", function() {
+            console.log('close');
+        });
+    }
+    function jumpurl(){
+        window.location.href="https://bjwob.top/index.php/react/opt/pubs"
+    }
+
+    function delItem() {
+        $.ajax({
+            type:"post",
+            url: 'https://bjwob.top/index.php/react/opt/del_item',
+            datatype: "json",
+            data: {
+                itemId: itemId
+            },
+            success: function (res) {
+                console.log(res)
+                var obj = eval("("+res+")");
+                if (obj.code==0){
+                    //alert('发布成功');
+                    showToast1()
+                    window.setTimeout("jumpurl()",1500);
+                    //
+
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
     }
 </script>
 

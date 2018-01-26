@@ -35,6 +35,10 @@ class ImageModel extends DBModel {
         return $this->select(parent::ALL_FIELD, "f_itemid='{$item_id}'");
     }
 
+    public function del($where){
+        return $this->delete($where);
+    }
+
 
 	//添加订单
 	public function insertInfo($params){
