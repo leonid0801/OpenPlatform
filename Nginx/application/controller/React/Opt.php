@@ -116,4 +116,16 @@ class React_Opt extends BaseController{
 
     }
 
+    public function upload(){
+        //$this->logs->msg(print_r($_COOKIE,1), __FILE__, __LINE__);
+        $ifLogin=$this->action->checkIfLogin();
+        $view = $this->_getView();
+        if (false==$ifLogin){
+            $view->render('signup')   ;
+        }else{
+            $view->render('upload')   ;
+        }
+        //$view->assign('retcode',$retcode);
+    }
+
 }

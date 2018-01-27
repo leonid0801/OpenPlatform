@@ -53,6 +53,10 @@ class ItemNewModel extends DBModel {
         return $this->select(Array("f_textarea"), "f_itemid='{$item_id}'");
     }
 
+    public function getUidByItemid($item_id){
+        return $this->select(Array("f_uid"), "f_itemid='{$item_id}'");
+    }
+
     public function del($where){
         return $this->delete($where);
     }

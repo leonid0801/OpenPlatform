@@ -41,6 +41,11 @@ class Action{
 
             $useRet = $this->userModel->getUserByMobile($usermobile);
             $use_id=$useRet[0]['f_uid'];
+            $pwd=$useRet[0]['f_passwd'];
+
+            if ($pwd!=$password){
+                return False;
+            }
 
             if (array_key_exists('remember', $get_info)){
                 $remember=$get_info['remember'];
@@ -130,7 +135,13 @@ class Action{
     }
 
 
-
+    public function checkIfLogin(){
+        $uid=$this->utils->getUserIdInCookie();
+        if (false==$uid){
+            return False;
+        }
+        return True;
+    }
 
 
 }

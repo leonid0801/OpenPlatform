@@ -19,7 +19,7 @@ $g_binding_success = "绑定成功！\n现在您可以监控您所在汽车经�
 
 define("WX_COMMERCE_PUSH_GLOBALACCOUNT",'gh_c35951a0ec26') ;
 define("WX_COMMERCE_PUSH_APPID",'wx8f57106017a8df42');
-define("WX_COMMERCE_PUSH_APPSECRET",'ec880e6cff96873ee3d747881a83bc13');
+define("WX_COMMERCE_PUSH_APPSECRET",'fbfdb34a2823ddb413e1b785f0652c9f');
 
 define("WX_ACCESSTOKEN",'https://api.weixin.qq.com/cgi-bin/token');
 

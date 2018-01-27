@@ -8,7 +8,7 @@ $().ready(function() {
             },
 			password: {
 				required: true,
-				minlength: 6
+				minlength: 5
 			}
 		},
 		messages: {
@@ -32,7 +32,7 @@ $().ready(function() {
             },
 			password: {
 				required: true,
-				minlength: 6
+				minlength: 5
 			},
 			rpassword: {
 				equalTo: "#register_password"

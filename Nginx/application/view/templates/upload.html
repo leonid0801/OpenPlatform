@@ -60,6 +60,7 @@
 
 
 <script>
+    var fileIndex=0;
     var imageIndex = new Array;
     var imageArr = new Array;
     var imageFileArr = new Array;
@@ -176,21 +177,21 @@
             // 获取图片大小
             var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
             li.innerHTML = '<div class="progress"><span></span></div><div class="size">' + size + '</div>';
-            li.id=''+i;
+            li.id=''+fileIndex;
 
             $(".img-list").append($(li));
 
             reader.onload = function() {
-                imageFileArr[i]=new Array();
+                imageFileArr[fileIndex]=new Array();
                 var result = this.result;
                 var img = new Image();
                 img.src = result;
 
                 img.onload = function () {
 
-                    imageFileArr[i][0]=img;
-                    imageFileArr[i][1]=file.type;
-                    imageFileArr[i][2]=$(li);
+                    imageFileArr[fileIndex][0]=img;
+                    imageFileArr[fileIndex][1]=file.type;
+                    imageFileArr[fileIndex][2]=$(li);
 
 
                     $(li).css("background-image", "url(" + img.src + ")");
@@ -199,10 +200,11 @@
                         var newImage = rotateImageWithClick(img, count%4)
                         //console.log(newImage.src)
                         $(li).css("background-image", "url(" + newImage.src + ")");
-                        imageFileArr[i][0]=newImage;
+                        imageFileArr[fileIndex][0]=newImage;
                         count++;
                     }
-
+                    fileIndex++;
+                    console.log('fileIndex:'+fileIndex);
                 }
 
                 /*

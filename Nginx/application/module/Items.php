@@ -147,6 +147,19 @@ class Items{
             return $this->retArray(1,'failed');
         }
         $itemId = $info["itemId"];
+
+        $itemUids = $this->itemModel->getUidByItemid($itemId);
+        if (count($itemUids)<1){
+            return $this->retArray(1,'failed');
+        }
+        $itemUid=$itemUids[0]['f_uid'];
+
+        if ($uid!=$itemUid){
+            if($uid!=SUPER_ADMIN){
+                return $this->retArray(1,'failed');
+            }
+        }
+
         $res_del = $this->itemModel->del("f_itemid='$itemId'");
         $results = $this->imageModel->del("f_itemid='$itemId'");
 
