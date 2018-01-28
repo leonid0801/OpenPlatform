@@ -22,6 +22,14 @@
         .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
         input[type="text"],input[type="password"]{padding-left:26px;}
     </style>
+
+
+    <!--jquery-weui-->
+    <script type='text/javascript' src='/libs/js/jquery-weui.js' charset='utf-8'></script>
+    <link rel="stylesheet" href="/libs/css/weui.min.css">
+    <!--jquery-weui should be after weui in order to get correct boast style-->
+    <link rel="stylesheet" href="/libs/css/jquery-weui.css">
+
 </head>
 <body>
 <!--
@@ -47,11 +55,11 @@
             <div class="col-sm-9 col-md-9">
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="昵称" name="username" autofocus="autofocus"/>
+                    <input class="form-control required" type="text" placeholder="昵称" id="name" name="username" autofocus="autofocus"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="手机号" name="usermobile" autofocus="autofocus"/>
+                    <input class="form-control required" type="text" placeholder="手机号" id="mob" name="usermobile" autofocus="autofocus"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
@@ -59,7 +67,11 @@
                 </div>
                 <div class="form-group">
                     <i class="fa fa-check fa-lg"></i>
-                    <input class="form-control required" type="password" placeholder="再次输入密码" name="rpassword"/>
+                    <input class="form-control required" type="password" placeholder="再次输入密码" id="rpwd" name="rpassword"/>
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn btn-success pull-right" value="Sign Up " onclick="signUp()"/>
+                    <!--<input type="submit" class="btn btn-info pull-left" id="back_btn" value="Back"/>-->
                 </div>
                 <!--
                 <div class="form-group">
@@ -67,14 +79,61 @@
                     <input class="form-control eamil" type="text" placeholder="Email" name="email"/>
                 </div>
                 -->
-                <div class="form-group">
-                    <input type="submit" class="btn btn-success pull-right" value="Sign Up "/>
-                    <!--<input type="submit" class="btn btn-info pull-left" id="back_btn" value="Back"/>-->
-                </div>
             </div>
         </form>
     </div>
 </div>
 <script type="text/javascript" src="/application/view/templates/js/main.js" ></script>
+
+<script>
+    function jumpLogin(){
+        window.location.href="https://bjwob.top/index.php/react/opt/login"
+    }
+
+    function showToast(){
+        $.toast("注册成功", function() {
+            console.log('close');
+        });
+    }
+
+    function signUp() {
+        var name = document.getElementById('name').value;
+        var mob = document.getElementById('mob').value;
+        var password = document.getElementById('register_password').value;
+        var rpwd = document.getElementById('rpwd').value;
+
+
+
+        $.ajax({
+            async: true,
+            type:"post",
+            url: 'https://bjwob.top/index.php/react/opt/sign_up',
+            //返回数据的格式
+            datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+            data: {
+                username: name,
+                usermobile: mob,
+                password:password,
+                rpassword:rpwd
+            },
+
+            success: function (res) {
+                var obj = eval("("+res+")");
+                if (obj.code==0){
+
+                    showToast()
+                    window.setTimeout("jumpLogin()",1500);
+
+                }else{
+                    jumpLogin();
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+
+    }
+</script>
 </body>
 </html>

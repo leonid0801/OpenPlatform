@@ -11,15 +11,20 @@ class React_Opt extends BaseController{
     public function _init() {
         $this->action= new Action();
         $this->items=new Items();
+        $this->utils=new Utils();
     }
 
 
 
     public function login(){
+        $view = $this->_getView();
+        $uid=$this->utils->getUserIdInCookie();
+        if(false==$uid){
+            $view->render('signup');
+            return;
+        }
 
         //$this->logs->msg(json_encode($_SESSION), __FILE__, __LINE__);
-
-        $view = $this->_getView();
         $ret = $this->action->login($_POST);
         if ($ret){
             $view->render('index')   ;
@@ -30,28 +35,17 @@ class React_Opt extends BaseController{
     }
 
     public function sign_up(){
-        //$this->logs->msg(json_encode($_SESSION), __FILE__, __LINE__);
-        $view = $this->_getView();
+        $this->logs->msg(json_encode($_POST), __FILE__, __LINE__);
         $ret = $this->action->sign_up($_POST);
-
         if ($ret['code']==0){
             $uid=$ret['data']['uid'];
             $usermobile=$ret['data']['usermobile'];
             $passwd=$ret['data']['password'];
-            setcookie("uid",$ret['data']['uid'],time()+3600);
-            setcookie("usermobile",$ret['data']['usermobile'],time()+3600);
-            setcookie("password",$ret['data']['password'],time()+3600);
-
-            //$uid = isset($_COOKIE['uid'])?$_COOKIE['uid']:'';
-            //$usermobile = isset($_COOKIE['usermobile'])?$_COOKIE['usermobile']:'';
-            //$passwd = isset($_COOKIE['password'])?$_COOKIE['password']:'';
-            $userArr = Array('uid'=>$uid,'usermobile'=>$usermobile,'password'=>$passwd);
-            $view->assign('userArr',$userArr);
-            $view->render('login')   ;
-        }else{
-            $view->assign('ret',$ret);
-            $view->render('signup');
+            setcookie("uid",$uid,time()+3600);
+            setcookie("usermobile",$usermobile,time()+3600);
+            setcookie("password",$passwd,time()+3600);
         }
+        echo json_encode($ret);
     }
 
     public function newitem(){

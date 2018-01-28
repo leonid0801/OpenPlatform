@@ -77,7 +77,7 @@ class Action{
     }
 
     public function sign_up($get_info){
-        //$this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
+        $this->logs->msg(json_encode($get_info), __FILE__, __LINE__);
         $ret = Array();
         if (!array_key_exists('usermobile', $get_info)
             or !array_key_exists('username', $get_info)
