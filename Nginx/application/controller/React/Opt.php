@@ -14,8 +14,13 @@ class React_Opt extends BaseController{
         $this->utils=new Utils();
     }
 
+    public function index(){
+        $view = $this->_getView();
+        //$view->assign('retcode',$retcode);
+        $view->render('index')   ;
+    }
 
-
+    /*
     public function login(){
         $view = $this->_getView();
         $uid=$this->utils->getUserIdInCookie();
@@ -32,8 +37,29 @@ class React_Opt extends BaseController{
             $view->assign('ret',$ret);
             $view->render('login')   ;
         }
+    }*/
+
+    // page of login_page
+    public function login(){
+        $view = $this->_getView();
+
+        //$this->logs->msg(json_encode($_SESSION), __FILE__, __LINE__);
+        $ret = $this->action->login($_POST);
+        if ($ret){
+            $view->render('index')   ;
+        }else{
+            $view->assign('ret',$ret);
+            $view->render('login')   ;
+        }
     }
 
+    // page of sign up
+    public function signup(){
+        $view = $this->_getView();
+        $view->render('signup');
+    }
+
+    // Api of sign up
     public function sign_up(){
         $this->logs->msg(json_encode($_POST), __FILE__, __LINE__);
         $ret = $this->action->sign_up($_POST);
@@ -41,9 +67,9 @@ class React_Opt extends BaseController{
             $uid=$ret['data']['uid'];
             $usermobile=$ret['data']['usermobile'];
             $passwd=$ret['data']['password'];
-            setcookie("uid",$uid,time()+3600);
-            setcookie("usermobile",$usermobile,time()+3600);
-            setcookie("password",$passwd,time()+3600);
+            setcookie("uid",$uid,time()+3600,'/');
+            setcookie("usermobile",$usermobile,time()+3600,'/');
+            setcookie("password",$passwd,time()+3600,'/');
         }
         echo json_encode($ret);
     }
@@ -97,6 +123,12 @@ class React_Opt extends BaseController{
 
 
     public function user(){
+        $view = $this->_getView();
+        $uid=$this->utils->getUserIdInCookie();
+        if(false==$uid){
+            $view->render('signup');
+            return;
+        }
 
         $view = $this->_getView();
         $view->render('user')   ;
@@ -122,4 +154,8 @@ class React_Opt extends BaseController{
         //$view->assign('retcode',$retcode);
     }
 
+    public function logout(){
+        $res=$this->action->logout();
+        echo json_encode($res);
+    }
 }

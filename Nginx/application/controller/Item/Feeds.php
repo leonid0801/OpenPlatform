@@ -6,12 +6,6 @@ class Item_Feeds extends BaseController{
         $this->user = new User();
     }
 
-    public function index(){
-
-        $view = $this->_getView();
-        //$view->assign('retcode',$retcode);
-        $view->render('index')   ;
-    }
 
     public function detail(){
         $ret = $this->item->getItem($_GET);
