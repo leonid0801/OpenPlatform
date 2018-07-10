@@ -214,8 +214,8 @@ class DBModel {
 			
 			return $res;
 		} catch ( Exception $e ) {
-			$this->_logger->error ( $e->getMessage () );
-			$this->_logger->error ( "BAD SQL:{$sql}" );
+            $this->_logger->err( $e->getMessage (),__FILE__, __LINE__) ;
+            $this->_logger->err( "BAD SQL:{$sql}",__FILE__, __LINE__ );
 			return false;
 		}
 	}
@@ -272,11 +272,10 @@ class DBModel {
 			    $walltime = microtime(1) - $start_time;
 			    self::$SQLS[] = "{$sql}|{$walltime}";
 			}
-			
 			return $res;
 		} catch ( Exception $e ) {
-			$this->_logger->error ( $e->getMessage () );
-			$this->_logger->error ( "BAD SQL:{$sql}" );
+            $this->_logger->err( $e->getMessage (),__FILE__, __LINE__) ;
+            $this->_logger->err( "BAD SQL:{$sql}",__FILE__, __LINE__ );
 			return false;
 		}
 	}
