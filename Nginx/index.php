@@ -26,6 +26,7 @@ include_once(APP_PATH."/application/model/User.php");
 include_once(APP_PATH."/application/model/Item.php");
 include_once(APP_PATH."/application/model/item/Image.php");
 include_once(APP_PATH."/application/model/ItemNewModel.php");
+include_once(APP_PATH."/application/model/ItemView.php");
 
 #include_once(APP_PATH."/application/model/ImageModel.php");
 
