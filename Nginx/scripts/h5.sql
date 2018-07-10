@@ -30,3 +30,13 @@ CREATE TABLE `t_image` (
 `f_updated`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 PRIMARY KEY (`f_imageid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `t_view`;
+CREATE TABLE `t_view` (
+`f_itemid`                VARCHAR(32) NOT NULL DEFAULT '',
+`f_count`                 BIGINT NOT NULL DEFAULT '0',
+`f_created`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+`f_updated`               DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+PRIMARY KEY (`f_itemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
