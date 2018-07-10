@@ -17,6 +17,7 @@ class Items{
 
     public function _init() {
         $this->itemModel = new itemNewModel("t_item_new");
+        $this->itemView = new itemView("t_view");
         $this->imageModel = new imageModel("t_image");
         $this->utils=new Utils();
 
@@ -55,7 +56,14 @@ class Items{
             'f_created' => $cur_time,
             'f_updated' => $cur_time);
         $insertRes=$this->itemModel->insertWithIdRes($newItem);
-        $this->logs->msg(print_r($insertRes,1), __FILE__, __LINE__);
+
+        // inserting view info
+        $infoView=Array();
+        $infoView['f_itemid']=$insertRes;
+        $infoView['f_count']=0;
+        $this->itemView->insertInfo($infoView);
+
+        //$this->logs->msg(print_r($insertRes,1), __FILE__, __LINE__);
         if($insertRes){
             $newImages=Array();
             foreach ($images as $key => $imageUrl){
@@ -194,8 +202,19 @@ class Items{
             return $this->retArray(1,'failed');
         }
         $itemId=$info['itemId'];
-        $results = $this->itemModel->getDescByFid($itemId);
-        return $this->retArray(0,'success',$results);
+        $descRes = $this->itemModel->getDescByFid($itemId);
+        $countRes = $this->itemView->getCountByFid($itemId);
+        $this->itemView->increaseView($itemId);
+        if (count($descRes)<1 or count($countRes)<1){
+            return $this->retArray(1,'failed');
+        }
+
+        $count=DEFAULT_VIEW_COUNT;
+        if (array_key_exists('f_count', $countRes[0]) && false!=$countRes[0]['f_count']){
+            $count=$countRes[0]['f_count'];
+        }
+        $resArray=array('f_textarea'=>$descRes[0]['f_textarea'], 'f_count'=>$count);
+        return $this->retArray(0,'success',$resArray);
     }
 
 

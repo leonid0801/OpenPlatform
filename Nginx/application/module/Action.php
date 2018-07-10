@@ -9,6 +9,14 @@
 
 class Action{
 
+    private  function  retArray($code, $msg, $data=''){
+        $ret = Array();
+        $ret['code'] = $code;
+        $ret['msg'] = $msg;
+        $ret['data'] = $data;
+        return $ret;
+    }
+
     public function __construct( ) {
         $this->logs = LOGS::getInstance();
         $this->_init();
@@ -137,11 +145,25 @@ class Action{
 
     public function checkIfLogin(){
         $uid=$this->utils->getUserIdInCookie();
+        $this->logs->msg(print_r($_COOKIE,1), __FILE__, __LINE__);
         if (false==$uid){
             return False;
         }
         return True;
     }
 
+    public function logout(){
+
+        $this->logs->msg(print_r($_COOKIE,1), __FILE__, __LINE__);
+        setcookie("uid", "", time()-3600,'/');
+        setcookie("usermobile", "", time()-3600,'/');
+        setcookie("password", "", time()-3600,'/');
+        unset($_COOKIE['uid']);
+        unset($_COOKIE['usermobile']);
+        unset($_COOKIE['password']);
+
+        $this->logs->msg(print_r($_COOKIE,1), __FILE__, __LINE__);
+        return $this->retArray(0,'success');
+    }
 
 }
