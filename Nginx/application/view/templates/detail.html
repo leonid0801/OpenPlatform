@@ -111,8 +111,9 @@
         <ul class="img-list" id="lightgallery" onclick="toGallery()"  > <!---->
         </ul>
     </div>
-    <div class="weui-flex" onclick="showToast()">
-        <div class="weui-flex__item"><div class="placeholder">删除</div></div>
+    <div class="weui-flex" >
+        <div class="weui-flex__item"><div class="placeholder"><a class="item-count"></a></div></div>
+        <div class="weui-flex__item" onclick="delItem()"><div class="placeholder">删除</div></div>
     </div>
 </div>
 
@@ -133,7 +134,6 @@ $ret = $this->ret;
         //alert(window.location);
         getDesc();
         getImages();
-
     }
 
     function getDesc() {
@@ -177,10 +177,10 @@ $ret = $this->ret;
     }
 
     function fillDOM (data) {
-        if(data.length>0){
-            var desc=data[0]['f_textarea'];
-            $(".desc-text").append(desc);
-        }
+        var desc=data['f_textarea'];
+        var count=data['f_count'];
+        $(".desc-text").append(desc);
+        $(".item-count").append(count);
     }
 
     //加载数据到页面
@@ -216,9 +216,6 @@ $ret = $this->ret;
     }
 
     function showToast(){
-        delItem();
-    }
-    function showToast1(){
         $.toast("删除成功", function() {
             console.log('close');
         });
@@ -239,11 +236,9 @@ $ret = $this->ret;
                 console.log(res)
                 var obj = eval("("+res+")");
                 if (obj.code==0){
-                    //alert('发布成功');
-                    showToast1()
+                    showToast()
                     window.setTimeout("jumpurl()",1500);
                     //
-
                 }
             },
             error: function (err) {

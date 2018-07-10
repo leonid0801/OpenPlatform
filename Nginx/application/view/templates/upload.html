@@ -116,7 +116,7 @@
     }
 
     function jumpurl(){
-        window.location.href="https://bjwob.top/index.php/item/feeds/index"
+        window.location.href="https://bjwob.top/index.php/react/opt/index"
     }
 
     function publish() {
@@ -195,12 +195,12 @@
 
 
                     $(li).css("background-image", "url(" + img.src + ")");
-                    var count=0;
+                    var count=1;
                     li.onclick=function(){
                         var newImage = rotateImageWithClick(img, count%4)
                         //console.log(newImage.src)
                         $(li).css("background-image", "url(" + newImage.src + ")");
-                        imageFileArr[fileIndex][0]=newImage;
+                        imageFileArr[li.id][0]=newImage;
                         count++;
                     }
                     fileIndex++;

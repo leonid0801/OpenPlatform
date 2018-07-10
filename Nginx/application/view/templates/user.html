@@ -41,18 +41,34 @@
         .page__ft.j_bottom{position:absolute;bottom:0;left:0;right:0}
 
     </style>
+
+    <!--jquery-->
+    <script src="/application/view/templates/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
 <body>
 
 
 <div class="page">
+
+
     <div class="page__hd">
-        <h1 class="page__title">Flex</h1>
+
+        <div style="text-align: center;">
+            <img src="/application/view/img/android.png" style="display: inline-block;" />
+        </div>
+        <!--
+        <h1 class="page__title">Flex布局</h1>
         <p class="page__desc">Flex布局</p>
+        -->
     </div>
+
     <div class="page__bd page__bd_spacing">
         <div class="weui-flex" onclick="userPubs()">
             <div class="weui-flex__item"><div class="placeholder">我的发布</div></div>
+        </div>
+        <div class="weui-flex" onclick="logout()">
+            <div class="weui-flex__item"><div class="placeholder">退出登录</div></div>
         </div>
         <!--
         <div class="weui-flex">
@@ -77,9 +93,9 @@
         </div>
         -->
     </div>
-    <div class="page__ft">
+    <!--<div class="page__ft">
         <a href="javascript:home()"><img src="./images/icon_footer_link.png" /></a>
-    </div>
+    </div>-->
 </div>
 
 <script>
@@ -87,6 +103,25 @@
     function userPubs() {
         //console.log()
         window.location.href="https://bjwob.top/index.php/react/opt/pubs";
+    }
+
+    function logout() {
+        //console.log()
+        $.ajax({
+            type:"post",
+            url: 'https://bjwob.top/index.php/react/opt/logout',
+            data: {},
+            success: function (res) {
+                console.log(res)
+                var obj = eval("("+res+")");
+                if (obj.code==0){
+                    window.location.href="https://bjwob.top/index.php/react/opt/index";
+                }
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
     }
 </script>
 
