@@ -15,3 +15,4 @@ define ( "DOMAIN_NAME", "https://bjwob.top") ;
 define ( "FULL_ITEM_DIR", APP_PATH.'/'.ITEM_DIR) ;
 define ( "FULL_ITEM_DIR_DOMAIN", DOMAIN_NAME.'/'.ITEM_DIR) ;
 define ( "SUPER_ADMIN", '10177') ;
+define ( "DEFAULT_VIEW_COUNT", '200') ;
